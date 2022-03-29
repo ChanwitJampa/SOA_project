@@ -1,0 +1,182 @@
+/* The side navigation menu */
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300&display=swap');
+
+body{
+    font-family:'Prompt', sans-serif;
+    margin:0;
+    background-color: #FAFAFA; 
+}
+.sidenav {
+    height: 100%;
+    width: 70px;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0px;
+    background-color: #2F3337;
+    overflow-x: hidden;
+    padding-top: 0px;
+    transition: 0.25s;
+    display: flexbox;
+}
+
+/* ON HOVER */
+.sidenav:hover{
+   width: 250px;
+   color: #f1f1f1;
+}
+
+/* The navigation menu links */
+.sidenav-link{
+    padding: 14px 10px 14px 10px;
+    text-decoration: none;
+    font-size: 15px;
+    color: #f1f1f1;
+    display: flex;
+    align-items: center;
+    transition: 0.3ss;
+    white-space: nowrap;  /* ไม่ขึ้นบรรทัดใหม่ */
+}
+
+.sidenav-link2{
+    padding: 14px 10px 14px 10px;
+    text-decoration: none;
+    font-size: 15px;
+    color: #f1f1f1;
+    display: flex;
+    align-items: center;
+    transition: 0.3ss;
+    white-space: nowrap;  /* ไม่ขึ้นบรรทัดใหม่ */
+    cursor: default;
+
+}
+
+.sidenav-link:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+    background-color: #02BC77;
+}
+.sidenav-link2:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+    /* background-color: #02BC77; */
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+.sidenav-iconRole{
+    padding: 0px 40px 0px 20px;
+}
+.sidenav-icon{
+    padding: 0px 40px 0px 20px;
+}
+.sidenav-icon2{
+    color: #2F3337;
+}
+.sidenav-icon3{
+    color: #FFFFFF;
+    padding-left: 1.2rem;
+    cursor: default;
+    /* color: #2F3337; */
+}
+#main {
+    transition: margin-left .5s;
+    padding: 20px;
+}
+.navbar{
+    background-color: #02BC77;
+    width: 100%;
+    height: 7%;
+    top: 0;
+    position: fixed;
+    z-index: 99;
+    font-size: 16px;
+    color: #f1f1f1;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+.navbar ul{
+    display: flex;
+    list-style-type: none;
+    align-items: center;
+    
+}
+.navbar ul li{
+    display: flex;
+    align-items: center;
+    padding: 10px 15px 0px 15px;
+}
+.navbar-link, .navbar-logolink{
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    color: #FFFFFF;
+}
+.navbar-link:hover, .navbar-logolink:hover{
+    color: #005334;
+}
+
+.navbar-link:hover, .navbar-logolink:hover, .roleText:hover{
+    color: #FFFFFF;
+}
+
+/* .sidenav-icon2:hover{
+    color: #02BC77;
+} */
+.navbar-logolink {
+    font-size: 1.5rem;
+    /* font-weight: bold; */
+    cursor: default;
+}
+.navbar-logo{
+    /* padding: 5px 15px 0px 15px; */
+    margin-left: 30%;
+}
+
+.content-main{
+    width:  100%;
+    padding: 8px 8px 10px 100px;
+    top: 0;
+    left: 0;
+}
+.content-main h1{
+    padding: 8px 8px 10px 150px;
+}
+.navbar-icon{
+    padding: 10px;
+}
+.listIcon{
+    padding-left: 2rem;
+    padding-right: 2rem;
+    color: #f1f1f1;
+
+}
+
+.roleBar{
+    display: flex;
+    flex-direction: row;
+    /* text-align: center; */
+}
+.roleText{
+    /* margin-left: 2rem; */
+    font-size: 1rem;
+}
+
+.userName{
+    margin-top: 0.5rem;
+    font-size: 1rem;
+}
+
+.space1{
+    margin-top: 4rem;
+}
+
+.roleText{
+    padding: 1.5rem 1rem 1rem 1rem;
+
+    color: #02BC77;
+}

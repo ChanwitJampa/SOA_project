@@ -1,0 +1,234 @@
+.container{
+  width: 100rem;
+  height: 50rem;
+  padding: 100px 20px 10px 20px;
+  background-color: #ffffff;
+
+
+}
+
+.container2{
+  /* flex-direction: row; */
+  /* z-index: 2; */
+  height: 60rem;
+  background-color: #FFF;
+
+}
+
+.container3{
+  background-color: #FFF;
+  width: 100%;
+  height: 100rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.mapBox{
+  text-align: center;
+  /* background-color: #FFF; */
+  background-color: #ffffff;
+  /* background-color: rgb(43, 153, 43); */
+  padding: 0;
+  /* margin-left: -15rem;
+  margin-top: -23rem; */
+  /* margin-left: -750rem; */
+  /* margin-right: -700rem; */
+  /* margin-top: -212rem; */
+  /* width: 100%; */
+  z-index: 0;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  /* justify-content: center;
+  align-items: center; */
+}
+
+/* .mySepecialClass{
+  font-size: 2rem !important;
+}
+
+.tableprovince{
+  margin: 2rem;
+  margin-left: 3rem;
+}
+
+.informationBox{
+  justify-content: center;
+  align-items: center;
+  margin-top: 8rem;
+  margin-right: 15rem;
+  width: 150rem;
+  height: 200rem;
+  background-color: crimson;
+  z-index: 0;
+  border-radius: 2rem;
+  text-align: center;
+} */
+
+
+.css-pfr4gq {
+  position: absolute;
+  height: 4px;
+  overflow: hidden;
+  background-color: #ffffff!important;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  display: block;
+  border-radius: 2px;
+  will-change: left,right;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  -webkit-animation: animation-1dkbetu 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
+  animation: animation-1dkbetu 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
+}
+
+.css-1tgyhd0 {
+  position: absolute;
+  height: 4px;
+  overflow: hidden;
+  background-color: #ffffff!important;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  display: block;
+  border-radius: 2px;
+  will-change: left,right;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  -webkit-animation: animation-1rt1w7v 2.1s 1.15s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
+  animation: animation-1rt1w7v 2.1s 1.15s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
+}
+
+.box1{
+  width: 80%;
+  height: 100%;
+  background-color: #ffffff;
+  /* border-radius: 1rem; */
+  border-color: rgb(236, 236, 236);
+  border-style: solid;
+  border-width: 0.1rem;
+  padding: 2rem;
+  margin-top: -3rem;
+  margin-left: 15rem;
+  z-index: 0;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
+  margin-bottom: 0rem;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+
+.timeText{
+  font-size: 1.5rem;
+  font-weight: 600;
+  color:#02BC77;
+  padding-top: 5rem;
+  margin-left: 6rem;
+}
+
+.welcomText{
+  font-size: 3rem;
+  font-weight: bold;
+  color:#4b4b4b;
+  /* padding-top: 6rem; */
+  margin-left: 40rem;
+}
+
+.searchArea{
+  width: 25rem;
+  height: 10rem;
+  margin-left: 85rem;
+  padding-top: 2rem;
+
+}
+
+
+.newBox{
+  width: 100%;
+  height: 15rem;
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  border-color: rgb(179, 179, 179);
+  border-style: solid;
+  border-width: 0.1rem;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+}
+
+.topBox{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.middleBox{
+  width: 70%;
+  height: 7rem;
+}
+
+
+.bottomBox{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 96%;
+}
+
+.corpName{
+  font-size: 1.8rem;
+  font-weight: bold;
+  padding-left: 2rem;
+  padding-top: 1rem;
+  margin-bottom: 2rem;
+  
+}
+.postDate{
+  font-size: 1rem;
+  margin-right: 2rem;
+  margin-top: 1.2rem;
+}
+
+.postText{
+  font-size: 1rem;
+  margin-left: 3rem;
+}
+
+.postText2{
+  font-size: 1rem;
+  margin-left: 3rem;
+  /* margin-top: 5rem; */
+}
+
+.postType{
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #02BC77;
+  /* margin-right: 1rem;
+  margin-top: 7rem;
+  margin-left: 10rem; */
+}
+
+.leftBotBox{
+  
+}
+
+.rightBotBox{
+  /* padding: 0;
+  width: 30rem; */
+  /* height: 2rem; */
+  display: flex;
+  flex-direction: row;
+  /* margin-left: 20rem; */
+  /* margin-top: 7rem; */
+  margin-right: -2rem;
+}
+
+.headerBox{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.addReqBtn{
+
+}
