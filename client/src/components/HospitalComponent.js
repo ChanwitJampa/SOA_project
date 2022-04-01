@@ -65,28 +65,98 @@ const HospitalComponent = () => {
       })
       .catch((err) => alert(err));
   };
-  return ( 
+  return (
     <div>
       <NavbarComponent />
       <div className="container">
-        <h1>กรอกข้อมูลสถานประกอบการ</h1>
-        <div className="content-box">
-        <form>
-          <div class="form-group">
-            <label>ชื่อสถานประกอบการ/หน่วยงาน</label>
-              <input class="form-control" id="disabledInput" type="text" onChange={""} />
-            <label>ประเภทธุรกิจ</label>
-              <input class="form-control" id="disabledInput" type="text" onChange={""} />
-            <label>ที่อยู่สถานประกอบการ</label>
-              <input class="form-control" id="disabledInput" type="text" onChange={""} />
-            <label>เบอร์โทรศัพท์ของสถานประกอบการ/หน่วยงาน</label>
-              <input class="form-control" id="disabledInput" type="text" onChange={""} />
-            <label>เบอร์โทรสาร</label>
-              <input class="form-control" id="disabledInput" type="text" onChange={""} />
-          <button type="submit" className="btn btn-color">ยืนยัน</button> 
+        <h1>Hospital</h1>
+        <div className="tap-top-select">
+          <div className="tap-top-select-in">
+            <div className="tap-select">
+              <select class="mdb-select " searchable="Search here.." onChange={(event)=>{                      
+                console.log(event.target.value) ;
+                fetchDistrict(event.target.value);
+                setSearchHospital(event.target.value)  
+                }}>
+                  <option selected disabled>เลือกจังหวัด</option>
+                {provinces.map((provinces) => (
+                  <option value={provinces.province}>{provinces.province}</option>
+                ))}
+              </select>
+            </div>
+            <div className="tap-select">
+              <select class="mdb-select" searchable="Search here.." onChange={(event)=>{
+                setSearchHospital(event.target.value)
+              }}>
+                <option selected disabled>เลือกอำเภอ</option>
+                {district.map((district) => (
+                  <option value={district.district}>{district.district}</option>
+                ))}
+              </select>
+            </div>
           </div>
-         </form> 
+          <div className="search">
+            <input 
+            type="search" 
+            placeholder="ค้นหา..." 
+            onChange={(event)=>{
+              setSearchHospital(event.target.value);
+            }}/>
         </div>
+        </div>
+
+        <table class="table" style={{ backgroundColor: "#FFFFFF" }}>
+          <thead className="table-thead">
+            <tr>
+              <th scope="col">โรงพยาบาล</th>
+              <th scope="col">อำเภอ</th>
+              <th scope="col">จังหวัด</th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody className="table-tbody">
+            {hospital.filter((hospital)=>{
+              if(searchHospital==''){
+                return hospital
+              }
+              else if(hospital.hospitalName.toString().includes(searchHospital)
+              ||hospital.district.toString().includes(searchHospital)
+              ||hospital.province.toString().includes(searchHospital)){
+                return hospital
+              }
+            }).map((hospital) => (
+              <tr>
+                <td scope="row">{hospital.hospitalName}</td>
+                <td>{hospital.district}</td>
+                <td>{hospital.province}</td>
+                <td>
+                  <Link
+                    to={`/edithospital/${hospital._id}`}
+                    type="button"
+                    class="btn btn-primary"
+                  >
+                    <FontAwesomeIcon icon={faAdd} />
+                    Edit
+                  </Link>
+                </td>
+                <td>
+                  <button
+                    className="btn btn-danger"
+                    onClick={() => confrimDelete(hospital._id)}
+                  >
+                    <FontAwesomeIcon icon={faTrash} />
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <Link to="/addhospital" type="button" className="button-addnew">
+          <FontAwesomeIcon icon={faAdd} />
+          Add New
+        </Link>
       </div>
     </div>
   );

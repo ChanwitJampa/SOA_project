@@ -12,9 +12,12 @@ const verifyToken = (req,res,next)=>{
         res.status(403)
         throw new Error("A token is required for authentication")
     }
+    
     const token = authHeader.substring(8, authHeader.length-1);
+
     // const token = authHeader.split(" ")[1].substring(0, authHeader.length - 100)
     // req.body.token || req.query.token || req.headers['x-access-token']  || req.header('Authorization')
+
     console.log(token)
     if(!token){
          res.status(403)

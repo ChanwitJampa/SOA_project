@@ -6,9 +6,10 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import axios from "axios";
 const AnnounceComponent=()=>{
     const [searchAnnounce,setSearchAnnounce]=useState('');
+    const [announce,setAnnounce]=useState([]);
     const [district,setDistrict]=useState([]);
     const [provinces,setProvinces]=useState([]);
-    const [announce,setAnnounce]=useState([]);
+    const [allhospital, setAllHospital] = useState([]);
     const fetchData=()=>{
         axios.get(`http://localhost:5000/api/announces`)
         .then((res)=>{
@@ -29,6 +30,11 @@ const AnnounceComponent=()=>{
             console.log(res.data.data);
             setDistrict(res.data.data);
           })
+        axios
+          .get(`http://localhost:5000/api/hospitals`)
+          .then((res) => {
+              setAllHospital(res.data);
+          });
       }
     useEffect(()=>{
         fetchData()
@@ -38,85 +44,39 @@ const AnnounceComponent=()=>{
         <div>
             <NavbarComponent/>
             <div className="container"> 
-                <h1>ตรวจสอบสถานะ</h1>
-                <div className="content-box">
-                
-
-            
-                {/*<div className="tap-top-select">
+                <h1>Announce</h1>
+                <div className="tap-top-select">
                     <div className="tap-top-select-in">
                             <div className="tap-select">
                             <select class="mdb-select " searchable="Search here.." onChange={(event)=>{                      
-                                console.log(event.target.value) ;
-                                fetchDistrict(event.target.value);
                                 setSearchAnnounce(event.target.value)  
                                 }}>
-                                <option selected disabled>เลือกจังหวัด</option>
-                                {provinces.map((provinces) => (
-                                <option value={provinces.province}>{provinces.province}</option>
+                                <option selected disabled>เลือกโรงพยาบาล</option>
+                                {allhospital.map((hospital) => (
+                                <option value={hospital.hospitalName}>{hospital.hospitalName}</option>
                                 ))}
                             </select>
-                            </div>
-                            <div className="tap-select">
-                            <select class="mdb-select" searchable="Search here.." onChange={(event)=>{
-                                setSearchAnnounce(event.target.value)
-                                }}>
-                                <option selected disabled>เลือกอำเภอ</option>
-                                {district.map((district) => (
-                                <option value={district.district}>{district.district}</option>
-                                ))}
-                            </select>
-                            </div>
-                            <div className="tap-select">
+                            
+                    </div>
+                    <div className="tap-select">
                             <select aria-label="Default select example" onChange={(event)=>{
                                 setSearchAnnounce(event.target.value)
                                 }}>
-                                <option elected disabled>เลือกประเภทการลงทะเบียน</option>
-                                <option value="register">Register</option>
-                                <option value="walkin">Walk in</option>
-                            </select>
-                            </div>
-                            <div className="tap-select">
-                            <select  aria-label="Default select example">
-                                <option elected disabled>เลือกช่วงอายุ</option>
-                                <option value="1">เด็ก 12-18 ปี</option>
-                                <option value="2">18 ปีขึ้นไป</option>
-                                <option value="3">สูงกว่า 60 ปี</option>
-                            </select> 
-                            </div>
+                            <option elected disabled>เลือกประเภทการลงทะเบียน</option>
+                            <option value="register">Register</option>
+                            <option value="walkin">Walk in</option>
+                        </select>
                     </div>
-                    <div className='search'>
+                    </div>
+                        <div className='search'>
                             <input 
                             type='search'
                             placeholder="ค้นหา..."
                             onChange={(event)=>{
                             setSearchAnnounce(event.target.value);
                             }}/>
-                    </div>
+                        </div>
                 </div>
-            <div className="tap-top-check">
-                <FontAwesomeIcon icon={faSyringe} className="logo-vacc"/>
-                    <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"/>
-                    <label class="form-check-label" for="inlineCheckbox1">ไฟเซอร์</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2"/>
-                    <label class="form-check-label" for="inlineCheckbox2">แอสต้าเซเนก้า</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"/>
-                    <label class="form-check-label" for="inlineCheckbox3">โมเดอร์นา</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4"/>
-                    <label class="form-check-label" for="inlineCheckbox4">ซิโนฟาร์ม</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="option5"/>
-                    <label class="form-check-label" for="inlineCheckbox5">ซิโนแวก</label>
-                    </div>            
-            </div>
                 {(announce).filter((announce)=>{
                     if(searchAnnounce == ''){
                         return announce
@@ -131,7 +91,7 @@ const AnnounceComponent=()=>{
                     }
                 }).map((announce)=>(
                     
-            <div className="text-box">
+                <div className="text-box">
                     <div className="text-header">
                         <div style={{padding:"10px"}}>
                             <h3>{announce.hospitalName}</h3>
@@ -140,14 +100,14 @@ const AnnounceComponent=()=>{
                             <h1 style={{color:"#B00020"}}>{announce.registrationType}</h1>
                         </div>
                     </div>
-                        <div className="text-line">
-                        <p>{announce.vaccinationSite}</p>
-                        </div>
                     <div className="text-line">
-                        <p><span>วันที่ 8 - 12 กุมภาพันธ์ 2565</span>
+                        <p>{announce.vaccinationSite}</p>
+                    </div>
+                    <div className="text-line">
+                        <p><span>วันที่ {announce.DateStart}  </span>
+                            {announce.DateEnd!=="null"&&(<span>ถึงวันที่  {announce.DateEnd}</span>)}
                             <span>วันละ {announce.numberPeople} คน</span>
-                            <span>รอบเช้าเวลา 8.00-12.00</span>
-                            <span>รอบบ่ายเวลา 13.00-14.00</span>
+                            <span>เวลา {announce.timeSet}</span>
                         </p>
                     </div>
                     <div className="table-container">
@@ -173,15 +133,12 @@ const AnnounceComponent=()=>{
                     <div className="text-line">
                         <p><span>เพิ่มเติม: {announce.more}</span></p>
                     </div>   
-            </div>
-            ))}
+                </div>
+                ))}
                 <footer>
                     <hr className="line"/>
                     <p>2022 ©ภาควิชาวิศวกรรมคอมพิวเตอร์ Kasetsart University © Version : 1.0</p>
-                            </footer>*/}
-            </div>
-            <button type="submit" className="btn btn-color">Download หนังสือขอความอนุเคราะห์</button> 
-            <button2 type="submit" className="btn btn-color">Download หนังสือส่งตัว</button2> 
+                </footer>
             </div>
         </div>
     )

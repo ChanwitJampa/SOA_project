@@ -4,16 +4,16 @@ import "./RegisterComponent.css";
 import axios from "axios";
 import Swal from "sweetalert2";
 const RegisterComponent=()=>{
-    const [hospital,setHospital]=useState([])
-    /*const [user,setUser]=useState({
+    const [hospital, setHospital] = useState([]);
+    const [hospitalID, setHospitalID] = useState("");
+    const [hospitalName, setHospitalName] = useState("");
+    const [user,setUser]=useState({
         firstName:"",
         lastName:"",
         idCard:"",
         email:"",
         password:"",
-        hospitalName:"",
-        hospitalID:"",
-    })*/
+    })
     const fetchData=()=>{
         axios.get(`http://localhost:5000/api/hospitals`).then(res=>{
           setHospital(res.data)
@@ -26,13 +26,37 @@ const RegisterComponent=()=>{
         fetchData()
     },[])
 
-    //const {firstName,lastName,idCard,email,password,hospitalName,hospitalID}=user
-    /*const inputValue=name=>event=>{
+    const inputHospital=(id)=>{
+        console.log(id);
+        const Name = hospital.filter((hospital)=>{
+            if(hospital._id===id){
+                return hospital
+            }
+        }).map((hospital)=>{
+            return hospital.hospitalName
+        })
+        setHospitalName(Name.toString());
+        setHospitalID(id);
+    }
+
+    const {firstName,lastName,idCard,email,password} = user
+
+    const inputValue = (name) => (event) =>{
         setUser({...user,[name]:event.target.value});
-    }*/
+    }
+
     const signupForm=(event)=>{
         event.preventDefault();
-        /*axios.post(`http://localhost:5000/api/user`,{firstName,lastName,idCard,email,password,hospitalName,hospitalID}).then(res=>{
+        console.table({
+            firstName,
+            lastName,
+            idCard,
+            email,
+            password,
+            hospitalID,
+            hospitalName
+        });
+        axios.post(`http://localhost:5000/api/Users`,{firstName,lastName,idCard,email,password,hospitalName,hospitalID}).then(res=>{
             console.log(res.data)
             setUser({...user,
             firstName:"",
@@ -40,16 +64,19 @@ const RegisterComponent=()=>{
             idCard:"",
             email:"",
             password:"",
-            hospitalName: hospital.hospitalID,
-            hospitalID:""})
+            hospitalName: "",
+            hospitalID: ""});
 
+            Swal.fire("ลงทะเบียนสำเร็จ", "บันทึกข้อมูลเรียบร้อย", "success");
+        })
+        .catch(err=>{
             Swal.fire(
-                'ลงทะเบียนสำเร็จ',
-            )
-        })*/
-        Swal.fire(
-            'ลงทะเบียนสำเร็จ',
-        )
+                'ลงทะเบียนไม่สำเร็จ',
+                'กรุณากรอกข้อมูลให้ครบถ้วน',
+                'error',
+                //err.response.data.error,
+               )
+        })
     }
     return(
         <div>
@@ -62,27 +89,27 @@ const RegisterComponent=()=>{
 
                             <div className="form-group">
                                 <label>First name</label>
-                                <input type="text" className="form-control" placeholder="First name" /*onChange={inputValue("firstName")}*//>
+                                <input type="text" className="form-control" placeholder="First name" onChange={inputValue("firstName")}/>
                             </div>
 
                             <div className="form-group">
                                 <label>Last name</label>
-                                <input type="text" className="form-control" placeholder="Last name" /*onChange={inputValue("lastName")}*//>
+                                <input type="text" className="form-control" placeholder="Last name" onChange={inputValue("lastName")}/>
                             </div>
 
                             <div className="form-group">
                                 <label>ID card</label>
-                                <input type="text" className="form-control" placeholder="XXXXX-XXXXX-XXX" /*onChange={inputValue("idCard")}*//>
+                                <input type="text" className="form-control" placeholder="XXXXX-XXXXX-XXX" onChange={inputValue("idCard")}/>
                             </div>
 
                             <div className="form-group">
                                 <label>Email</label>
-                                <input type="email" className="form-control" placeholder="Enter email" /*onChange={inputValue("email")}*//>
+                                <input type="email" className="form-control" placeholder="Enter email" onChange={inputValue("email")}/>
                             </div>
 
                             <div className="form-group">
                                 <label>Password</label>
-                                <input type="password" className="form-control" placeholder="Enter password" /*onChange={inputValue("password")}*//>
+                                <input type="password" className="form-control" placeholder="Enter password" onChange={inputValue("password")}/>
                             </div>
 
                             <div className="form-group">
@@ -92,7 +119,7 @@ const RegisterComponent=()=>{
 
                             <div className="form-group">
                                 <label>Hospital</label>
-                                <select  aria-label="Default select example" /*onChange={inputValue("hospitalID")}*/>
+                                <select  aria-label="Default select example" onChange={(event)=>inputHospital(event.target.value)}>
                                     <option selected disabled>Hospital</option>
                                     {hospital.map((hospital) => (
                                     <option value={hospital._id}>{hospital.hospitalName}</option>

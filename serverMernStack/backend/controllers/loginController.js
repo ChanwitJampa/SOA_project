@@ -13,43 +13,41 @@ const { hidden } = require('colors');
 const login = asyncHandler(async (req, res) => {
 
 
-    
-    const { studentID, password } = req.body
-    console.log("login "+studentID+password)
+
+    const { email, password } = req.body
+
     //validate user input
-    if (!(studentID && password)) {
+    if (!(email && password)) {
         res.status(400)
-        throw new Error('studentID or password are  required')
+        throw new Error('email or password are  required')
     }
 
-    const user = await User.findOne({ studentID }).select('+password')
+    const user = await User.findOne({ email }).select('+password').select('+role')
 
     if (user) {
-        // if ((await bcrypt.compare(password, user.password))) {
-        if (password == user.password) {
-            const token = jwt.sign(
-                { user_id: user._id, studentID },
-                process.env.TOKEN_KEY, {
-                expiresIn: "24h"
-            })
+        if ((await bcrypt.compare(password, user.password))) {
+           
             //save token in uuser
-            const oldUser = await User.findOne({ studentID },'-createdAt -updatedAt -__v +role')
-            //if want to deselect _id await User.findOne({ studentID }, '-_id')
+            const oldUser = await User.findOne({ email }).select('+role')
+            console.log(`old user is :${oldUser}`)
+            const token = jwt.sign(
+                { user_id: user._id, email ,role:oldUser.role},
+                process.env.TOKEN_KEY, {
+                expiresIn: "20s"
+            })
+            //if want to deselect _id await User.findOne({ email }, '-_id')
             oldUser.token = token
             res.status(200).json(oldUser)
         }
-        else{
-            res.status(400)
-            throw new Error('wrong userName or password')
-        }
 
     }
-    else{
+    else {
         res.status(400)
-        throw new Error('wrong userName or password')
-    }
+        throw new Error('wrong userName')
 
-   
+    }
+    res.status(400)
+    throw new Error('wrong password')
 
 
 })

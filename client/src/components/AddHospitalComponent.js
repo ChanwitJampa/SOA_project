@@ -2,7 +2,7 @@ import NavbarComponent from "./NavbarComponent";
 import { useEffect, useState } from "react";
 import "./AddHospitalComponent.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFileLines } from "@fortawesome/free-solid-svg-icons";
+import { faAdd } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import Swal from "sweetalert2";
 const AddHospitalComponent = () => {
@@ -89,18 +89,9 @@ const AddHospitalComponent = () => {
     <div>
       <NavbarComponent />
       <div className="container">
-        <h1>เอกสารที่เกี่ยวข้อง</h1>
-        <div className="text-line">
-          <FontAwesomeIcon icon={faFileLines} style=""/>
-          <h4>
-            หนังสือขอความอนุเคราะห์การฝึกงาน
-          </h4>
-          <button type="submit" className="btn btn-color">Download</button>
-        </div>
-         
-
-        <button type="submit" className="btn btn-color">Download</button> 
-          {/*<form onSubmit={submitForm}>
+        <h1>Add hospital</h1>
+        <div className="content-box">
+          <form onSubmit={submitForm}>
             <div className="form-group">
               <label>ชื่อโรงพยาบาล</label>
               <input
@@ -146,15 +137,16 @@ const AddHospitalComponent = () => {
                   <option value={district.district}>{district.district}</option>
                 ))}
               </select>
-                </div>
+            </div>
             <br />
             <button type="submit" className="button-addnew">
               <FontAwesomeIcon icon={faAdd} />
               Add New
             </button>
-                </form>*/}
+          </form>
         </div>
       </div>
+    </div>
   );
 };
 export default AddHospitalComponent;
