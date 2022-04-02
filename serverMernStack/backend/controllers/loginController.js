@@ -13,41 +13,43 @@ const { hidden } = require('colors');
 const login = asyncHandler(async (req, res) => {
 
 
-
-    const { email, password } = req.body
-
+    
+    const { studentID, password } = req.body
+    console.log("login "+studentID+password)
     //validate user input
-    if (!(email && password)) {
+    if (!(studentID && password)) {
         res.status(400)
-        throw new Error('email or password are  required')
+        throw new Error('studentID or password are  required')
     }
 
-    const user = await User.findOne({ email }).select('+password').select('+role')
+    const user = await User.findOne({ studentID }).select('+password')
 
     if (user) {
-        if ((await bcrypt.compare(password, user.password))) {
-           
-            //save token in uuser
-            const oldUser = await User.findOne({ email }).select('+role')
-            console.log(`old user is :${oldUser}`)
+        // if ((await bcrypt.compare(password, user.password))) {
+        if (password == user.password) {
             const token = jwt.sign(
-                { user_id: user._id, email ,role:oldUser.role},
+                { user_id: user._id, studentID },
                 process.env.TOKEN_KEY, {
-                expiresIn: "20s"
+                expiresIn: "24h"
             })
-            //if want to deselect _id await User.findOne({ email }, '-_id')
+            //save token in uuser
+            const oldUser = await User.findOne({ studentID },'-createdAt -updatedAt -__v +role')
+            //if want to deselect _id await User.findOne({ studentID }, '-_id')
             oldUser.token = token
             res.status(200).json(oldUser)
         }
+        else{
+            res.status(400)
+            throw new Error('wrong userName or password')
+        }
 
     }
-    else {
+    else{
         res.status(400)
-        throw new Error('wrong userName')
-
+        throw new Error('wrong userName or password')
     }
-    res.status(400)
-    throw new Error('wrong password')
+
+   
 
 
 })

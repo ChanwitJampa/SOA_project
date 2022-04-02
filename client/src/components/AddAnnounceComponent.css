@@ -1,38 +1,35 @@
+.container h1 {
+    text-align: center;
+}  
+
 .content-box{
-    padding: 40px 120px 60px 60px;
-    background-color: #BCBEC0;
+    /*padding: 40px 120px 60px 60px;*/
+    background-color: #EEEEEE;
     border-radius: 20px;
     margin: auto;
 }
-
+.content-box form{
+    background-color: #EEEEEE;
+    width: 1000px;
+    height: auto;
+    padding: 50px;
+    box-sizing: content-box;
+    margin: auto;
+}
 .text-line{
     display: flex;
+    margin: auto;
 }
-.tap-select{
-    padding: 7px 20px 7px 20px;
+/*.tap-select{
+    padding: 10px 20px 10px 20px;
 }
 .tap-select select{
+    padding: 5px;
     border-radius: 5px;
 }
 .tap-top-select-in{
     display: flex;
-}
-.button-vaccine{
-    background-color: #2B2118;
-    color: #FFFFFF;
-    border-radius: 20px;
-    width: 150px;
-}
-.button-vaccine:hover{
-    background-color: black;
-}
-.button-announce{
-    background-color: #2B2118;
-    color: #FFFFFF;
-    border-radius: 20px;
-    padding: 15px 20px 15px 20px;
-    
-}
-.button-announce:hover{
-    background-color: black;
+}*/
+.content-box button{
+    background-color: #02BC77;
 }

@@ -1,0 +1,353 @@
+.content-box{
+    padding: 40px 60px 60px 60px;
+    background-color: #d8d8d8;
+    border-radius: 20px;
+    margin: 20px;
+}
+/*.button-addnew{
+    padding: 15px 30px 15px 20px;
+    background-color: #2B2118;
+    border-radius: 20px;
+    color: #FFFFFF;
+}*/
+/*.button-addnew:hover{
+    background-color: red;
+}*/
+.content-box button{
+    background-color: #02BC77;
+    color: #FFFFFF;
+}
+.name text{
+    font-weight: 100;
+}
+
+.faFileLines{
+    padding-top: 3px;
+    margin-right: 10px;
+}
+.faArrowRightLong{
+    padding-top: 5px;
+    margin-left: 10px;
+}
+
+button{
+    margin-left: 10px;
+}
+
+.borderRadiusTop{
+    background-color: #eeeeee;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.borderRadiusBottom{
+    background-color: #eeeeee;
+    border-radius: 20px;
+    padding: 100px;
+}
+
+.upload-button{
+    float: right;
+    margin-top: 50px;
+}
+
+
+.drop-zone {
+    max-width: 1200px;
+    height: 300px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: "Quicksand", sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    cursor: pointer;
+    color: #000000;
+    background-color: #FFFFFF;
+    border: 4px dashed #009578;
+    border-radius: 10px;
+  }
+  
+  .drop-zone--over {
+    border-style: solid;
+  }
+  
+  .drop-zone__input {
+    display: none;
+  }
+  
+  .drop-zone__thumb {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #cccccc;
+    background-size: cover;
+    position: relative;
+  }
+  
+  .drop-zone__thumb::after {
+    content: attr(data-label);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 5px 0;
+    color: #ffffff;
+    background: rgba(0, 0, 0, 0.75);
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .container{
+    width: 100rem;
+    height: 50rem;
+    padding: 100px 20px 10px 20px;
+  }
+  
+  .container2{
+    flex-direction: row;
+    /* z-index: 2; */
+    height: 100%;
+    /* background-color: #f7f3e3; */
+  
+  }
+  
+  .mapBox{
+    text-align: center;
+    /* background-color: #FFF; */
+    /* background-color: #f7f3e3; */
+    /* background-color: rgb(43, 153, 43); */
+    padding: 0;
+    /* margin-left: -15rem;
+    margin-top: -23rem; */
+    /* margin-left: -750rem; */
+    /* margin-right: -700rem; */
+    /* margin-top: -212rem; */
+    /* width: 100%; */
+    z-index: 0;
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    /* justify-content: center;
+    align-items: center; */
+    
+  }
+  
+  .mapShow{
+    position: fixed;
+    width: 50rem;
+    margin-top: 2rem;
+    margin-right: 50rem;
+    /* background-color: #f7f3e3; */
+  
+  }
+  
+  .mySepecialClass{
+    font-size: 2rem !important;
+  }
+  
+  .tableprovince{
+    margin: auto;
+    /* margin-left: 5rem; */
+    
+  }
+  
+  .informationBox{
+    justify-content: center;
+    align-items: center;
+    margin-top: 8rem;
+    margin-right: 0rem;
+    margin-left: 16rem;
+    width: 60rem;
+    height: 100%;
+    background-color: #02BC77;
+    z-index: 0;
+    border-radius: 2rem;
+    text-align: center;
+  }
+  
+  
+  .headerInformation{
+    padding-top: 3rem;
+    margin-top: 3rem;
+    color: #FFF;
+    font-size: 2rem;
+  }
+  
+  .headerInformation2{
+    color: #FFF;
+    font-size: 1rem;
+  }
+  
+  .provinceName{
+    color: #FFF;
+    font-weight: bold;
+    font-size: 3rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .infoText{
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  
+  .history{
+    /* margin-top: 10rem; */
+    display: flex;
+    flex-direction: column;
+    /* margin-left: ; */
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .historyHeader{
+    color: #FFF;
+    font-size: 1.5rem;
+    align-self: center;
+  
+  }
+  
+  .historyHeader2{
+    color: #FFF;
+    font-size: 1rem;
+  }
+  
+  .historyHeader3{
+    color: #FFF;
+    font-size: 2rem;
+  }
+  
+  .textHistory{
+    font-size: 1rem;
+    color: #FFF;
+  }
+  
+  /* .box1{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 2rem;
+    text-align: start;
+  } */
+  
+  .box2{
+    display: flex;
+    flex-direction: row;
+    /* margin: 4rem; */
+    text-align: start;
+  
+  }
+  
+  .box3{
+    display: flex;
+    flex-direction: row;
+    /* margin: 4rem; */
+    text-align: start;
+  }
+  
+  .boxa{
+    
+  }
+  .boxb{
+    margin-left: 5rem;
+    text-align: center;
+  }
+  .boxc{
+    text-align: center;
+    
+  }
+  .boxd{
+    margin-left: 5rem;
+    text-align: center;
+  }
+  .boxe{
+    
+  }
+  .boxf{
+    margin-left: 5rem;
+    text-align: center;
+  }
+  
+  .loadingbar{
+    margin-top: 10rem;
+  
+  }
+  
+  .space1{
+    margin-bottom: 5rem;
+  }
+  
+  .space2{
+    /* margin-top: 5rem; */
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 3rem;
+    /* background-color: rgb(20, 54, 207); */
+    
+    /* margin-left: 2rem; */
+  }
+  
+  .space3{
+    /* margin: 0rem; */
+    height: 5rem;
+    margin-top: 2rem;
+    /* margin-bottom: 5rem; */
+  
+  }
+  
+  .chartRow{
+    height: 20rem;
+    width: 35rem;
+  background-color: #FFF;
+  margin: 1rem;
+  
+  }
+  
+  .chartBox{
+    height: 14rem;
+    margin-left: 2rem;
+  }
+  
+  .newTable{
+    width: 50%;
+    height: 50%;
+    margin-left: 25%;
+    margin-bottom: 5rem;
+    background-color: #FFF;
+  }
+  
+  /* .css-pfr4gq {
+    position: absolute;
+    height: 4px;
+    overflow: hidden;
+    background-color: #ffffff!important;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    display: block;
+    border-radius: 2px;
+    will-change: left,right;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    -webkit-animation: animation-1dkbetu 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
+    animation: animation-1dkbetu 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
+  }
+  
+  .css-1tgyhd0 {
+    position: absolute;
+    height: 4px;
+    overflow: hidden;
+    background-color: #ffffff!important;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    display: block;
+    border-radius: 2px;
+    will-change: left,right;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    -webkit-animation: animation-1rt1w7v 2.1s 1.15s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
+    animation: animation-1rt1w7v 2.1s 1.15s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
+  } */

@@ -1,8 +1,24 @@
+.container h1 {
+    text-align: center;
+    /* margin: auto; */
+}
+.content-box{
+    /*padding: 20px 120px 60px 60px;*/
+    background-color: #EEEEEE;
+    margin: auto;
+}
+.content-box form{
+    background-color: #EEEEEE;
+    width: 1000px;
+    height: 100px;
+    padding: 50px;
+    box-sizing: border-box;
+}
 .table-thead{
     background-color: #2B2118;
     color: aliceblue;
 }
-.table-thead tr th{
+/*}.table-thead tr th{
     text-align: center;
     padding: 15px;
 }
@@ -42,14 +58,13 @@
 .tap-select select{
     padding: 8px;
     border-radius: 5px;
+}*/
+.content-box form-control{
+    background-color: #FFFF;
+    width: 100%;
+    height: 150px;
+    box-sizing: border-box;
 }
-.button-addnew{
-    padding: 15px 30px 15px 20px;
-    background-color: #2B2118;
-    border-radius: 20px;
-    color: #FFFFFF;
-    text-decoration: none;
-}
-.button-addnew:hover{
-    background-color: black;
+.content-box button{
+    background-color: #02BC77;
 }
