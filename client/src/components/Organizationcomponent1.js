@@ -3,6 +3,7 @@ import NavbarComponent from './NavbarComponent';
 import "./OrganizationComponent1.css";
 import { Link, withRouter } from "react-router-dom";
 import { getRole, getUser,logout,getStudentID,getLastName,getFirstName } from "../servies/authorize";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -21,22 +22,23 @@ import {
   FormOutlined,
   PrinterOutlined,
 } from "@ant-design/icons";
+import { faCalendar, faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
 
 
 
 
 const OrganizationComponent1 = () => {
 
-   const [companies, setcompanies] = useState([]);
+   const [patients, setpatients] = useState([]);
 
   const fetchData = () => {
     axios
-      .get(`http://localhost:5000/api/companies`)
+      .get(`https://soa-project-final.herokuapp.com/api/patients/`)
       .then((res) => {
-        setcompanies(res.data);
-        console.log(res.data);
+        setpatients(res.data.body);
+        console.log(res.data.body);
         console.log("ANNOUCE  = ")
-        console.log(companies)
+        console.log(patients)
       })
       .catch((err) => {
         console.log(err);
@@ -69,7 +71,7 @@ const OrganizationComponent1 = () => {
         )
         //delete
         axios
-          .delete(`http://localhost:5000/api/companies/${id}`)
+          .delete(`https://soa-project-final.herokuapp.com/api/patients//${id}`)
           .then((res) => {
             console.log("DELETE SUCCESS");
             console.log(res);
@@ -105,7 +107,7 @@ const OrganizationComponent1 = () => {
 
         //update
         axios
-          .put(`http://localhost:5000/api/companies/${companies._id}`, companies)
+          .put(`http://localhost:5000/api/patients/${patients._id}`, patients)
           .then((res) => {
             console.log("UPDATE SUCCESS");
             console.log(res);
@@ -115,7 +117,7 @@ const OrganizationComponent1 = () => {
             console.log("UPDATE NOT SUCCESS");
             console.log(err);
           });
-    // deleteItem(companies._id);
+    // deleteItem(patients._id);
   }})
   }
 
@@ -125,14 +127,14 @@ const OrganizationComponent1 = () => {
   const searchItems = (searchValue) => {
     setSearchInput(searchValue)
     if (searchInput !== '') {
-        const filteredData = companies.filter((item) => {
+        const filteredData = patients.filter((item) => {
             return Object.values(item).join('').toLowerCase().includes(searchInput.toLowerCase())
         })
         setFilteredResults(filteredData)
         console.log(filteredData);
     }
     else{
-        setFilteredResults(companies)
+        setFilteredResults(patients)
     }
 }
 
@@ -209,12 +211,12 @@ const OrganizationComponent1 = () => {
 
 
           {searchInput.length > 1 ? (
-                    filteredResults.map((companies) => {
+                    filteredResults.map((patients) => {
                         return (
                             <div className="newBox">
                 
                             <div className="topBox">
-                              <h1 className="corpName">{companies.companyName}</h1>
+                              <h1 className="corpName">{patients.firstName}</h1>
                 
                               
                             </div>
@@ -222,10 +224,10 @@ const OrganizationComponent1 = () => {
                             <div className="middleBox">
                 
                                 <h1 className="postText">
-                                  {companies.businessType}
+                                  {patients.lastName}
                                 </h1>
                                 <h1 className="postText">
-                                  {companies.address}
+                                  {patients.BOD}
                                 </h1>
                 
                             </div>
@@ -244,7 +246,7 @@ const OrganizationComponent1 = () => {
                                       color: "#488FB1",
                                     }}
                                   />{" "}
-                                  {companies.phoneNumber}{" "}
+                                  {patients.BOD}{" "}
                                   <PrinterOutlined 
                                     style={{
                                       marginLeft: "2rem",
@@ -253,7 +255,7 @@ const OrganizationComponent1 = () => {
                                       color: "#019267",
                                     }}
                                   />{" "}
-                                  {companies.tel}
+                                  {patients.IDCard}
                                 </h1>
                               </div>
                 
@@ -265,7 +267,7 @@ const OrganizationComponent1 = () => {
                                         <div>
                                           <EditOutlined
                                             onClick={() => {
-                                              deleteItem(companies._id);
+                                              deleteItem(patients._id);
                                             }}
                                             style={{
                                               marginRight: "1rem",
@@ -275,7 +277,7 @@ const OrganizationComponent1 = () => {
                                           />
                                           <DeleteFilled
                                             onClick={() => {
-                                              deleteItem(companies._id);
+                                              deleteItem(patients._id);
                                             }}
                                             style={{
                                               marginRight: "3rem",
@@ -303,26 +305,25 @@ const OrganizationComponent1 = () => {
                         )
                     })
                 ) : (
-                    companies.map((companies) => {
+                    patients.map((patients) => {
                         return (
                             <div className="newBox">
                 
                             <div className="topBox">
-                              <h1 className="corpName">{companies.companyName}</h1>
+                              <h1 className="corpName">{patients.firstName}  {patients.lastName}</h1>
                 
                               
                             </div>
                 
-                            <div className="middleBox">
+                            {/* <div className="middleBox">
                 
+                              
                               <h1 className="postText">
-                                {companies.businessType}
-                              </h1>
-                              <h1 className="postText">
-                                {companies.address}
+                              <FontAwesomeIcon icon={faCalendarAlt} style={{color:"crimson",marginRight:"1rem",fontSize: "1.5rem",}}/>
+                                {patients.BOD}
                               </h1>
                 
-                            </div>
+                            </div> */}
                 
                             <div className="bottomBox">
                 
@@ -330,16 +331,9 @@ const OrganizationComponent1 = () => {
                                 
                 
                                 <h1 className="postText2">
-                                  <PhoneOutlined
-                                    style={{
-                                      marginLeft: "0rem",
-                                      marginRight: "1rem",
-                                      fontSize: "1.5rem",
-                                      color: "#488FB1",
-                                    }}
-                                  />{" "}
-                                  {companies.phoneNumber}{" "}
-                                  <PrinterOutlined 
+                                <FontAwesomeIcon icon={faCalendarAlt} style={{color:"crimson",marginRight:"1rem",fontSize: "1.5rem",}}/>
+                                {patients.BOD}{" "}
+                                  <PhoneOutlined 
                                     style={{
                                       marginLeft: "2rem",
                                       marginRight: "1rem",
@@ -347,7 +341,7 @@ const OrganizationComponent1 = () => {
                                       color: "#019267",
                                     }}
                                   />{" "}
-                                  {companies.tel}
+                                  {patients.IDCard}
                                 </h1>
                               </div>
                 
@@ -369,7 +363,7 @@ const OrganizationComponent1 = () => {
                                           />
                                           <DeleteFilled
                                             onClick={() => {
-                                              deleteItem(companies._id);
+                                              deleteItem(patients._id);
                                             }}
                                             style={{
                                               marginRight: "3rem",
@@ -523,13 +517,13 @@ const OrganizationComponent1 = () => {
 
       //           </div>
 
-      //              {companies.map((companies) => {
+      //              {patients.map((patients) => {
       //                 return (
 
       //                   <div className="newBox">
                 
       //                       <div className="topBox">
-      //                         <h1 className="corpName">{companies.companyName}</h1>
+      //                         <h1 className="corpName">{patients.firstName}</h1>
                 
                               
       //                       </div>
@@ -556,7 +550,7 @@ const OrganizationComponent1 = () => {
       //                                 />
       //                                 <DeleteFilled
       //                                   onClick={() => {
-      //                                     deleteItem(companies._id);
+      //                                     deleteItem(patients._id);
       //                                   }}
       //                                   style={{
       //                                     marginRight: "3rem",

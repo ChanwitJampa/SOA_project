@@ -8,17 +8,17 @@ import Swal from "sweetalert2";
 
 import { Link, withRouter } from "react-router-dom";
 const OrganizationComponent = () => {
-  const [companies, setcompanies] = useState([]);
+  const [patients, setpatients] = useState([]);
   const [provinces, setProvinces] = useState([]);
   const [subDistrict,setSubDistrict] = useState([]);
   const [searchHospital,setSearchHospital] =useState('');
   const [district, setDistrict] = useState([]);
   const fetchData = () => {
     axios
-      .get(`http://localhost:5000/api/companies`)
+      .get(`https://soa-project-final.herokuapp.com/api/patients/`)
       .then((response) => {
         console.log(response.data)
-        setcompanies(response.data);
+        setpatients(response.data);
 
       })
       .catch((err) => console.log(err));
@@ -62,42 +62,34 @@ const OrganizationComponent = () => {
 };
 
   const [state,setState]=useState({
-    companyName: "",
-            typeRequest: "",
-            businessType: "",
-            address: "",
-            phoneNumber: "",
-            tel : "",
+            firstName: "",
+            lastName: "",
+            BOD: "",
+            IDCard: "",
   })
 
 
-  const {companyName,
-    typeRequest,
-    businessType,
-    address,
-    phoneNumber,
-    tel,}=state
+  const {firstName,
+    lastName,
+    BOD,
+    IDCard,}=state
 
 
   const signinForm=(event)=>{
     event.preventDefault();
-    axios.post(`http://localhost:5000/api/companies`,{
-      companyName,
-      typeRequest,
-      businessType,
-      address,
-      phoneNumber,
-      tel ,}).then(res=>{
+    axios.post(`https://soa-project-final.herokuapp.com/api/patients/`,{
+      firstName,
+      lastName,
+      BOD,
+      IDCard,}).then(res=>{
         console.log(res.data)
         setState(res.data)
         console.log(state)
         setState({...state,
-            companyName: "",
-            typeRequest: "",
-            businessType: "",
-            address: "",
-            phoneNumber: "",
-            tel : "",
+            firstName: "",
+            lastName: "",
+            BOD: "",
+            IDCard: "",
             
             })
             Swal.fire(
@@ -122,25 +114,26 @@ const OrganizationComponent = () => {
     <div>
       <NavbarComponent />
       <div className="container">
-        <h1>กรอกข้อมูลสถานประกอบการ</h1>
+        <h1>กรอกข้อมูลผู้ป่วย</h1>
         <div className="c1">
 
         <form onSubmit={signinForm}>
 
           <div class="form-group">
 
-            <label>ชื่อสถานประกอบการ/หน่วยงาน</label>
-              <input class="form-control" id="disabledInput" type="text" placeholder="ชื่อสถานประกอบการ" onChange={inputValue("companyName")} />
-            <label>ประเภทธุรกิจ</label>
-              <input class="form-control" id="disabledInput" type="text" placeholder="ประเภทของสภานประกอบการ" onChange={inputValue("businessType")} />
-            <label>ที่อยู่สถานประกอบการ</label>
-              <input class="form-control" id="disabledInput" type="text" placeholder="ที่อยู่ของสถานประกอบการ" onChange={inputValue("address")} />
-            <label>เบอร์โทรศัพท์ของสถานประกอบการ/หน่วยงาน</label>
-              <input class="form-control" id="disabledInput" type="text"  placeholder="0xx-xxxxxxx" onChange={inputValue("phoneNumber")} />
-            <label>เบอร์โทรสาร</label>
-              <input class="form-control" id="disabledInput" type="text" placeholder="xxxx-xxxxxxx" onChange={inputValue("tel")} />
+            <label>ชื่อผู้ป่วย</label>
+              <input class="form-control" id="disabledInput" type="text" placeholder="ชื่อสถานประกอบการ" onChange={inputValue("firstName")} />
+            <label>นามสกุลผู้ป่วย</label>
+              <input class="form-control" id="disabledInput" type="text" placeholder="ประเภทของสภานประกอบการ" onChange={inputValue("lastName")} />
+            <label>วันเกิด</label>
+              <input class="form-control" id="disabledInput" type="text" placeholder="ที่อยู่ของสถานประกอบการ" onChange={inputValue("BOD")} />
+            <label>เลขบัตรประชาชนของผู้ป่วย</label>
+              <input class="form-control" id="disabledInput" type="text"  placeholder="0xx-xxxxxxx" onChange={inputValue("IDCard")} />
+            {/* <label>เบอร์โทรสาร</label> */}
+              {/* <input class="form-control" id="disabledInput" type="text" placeholder="xxxx-xxxxxxx" onChange={inputValue("tel")} /> */}
 
             <button type="submit" className="btn btn-color" style={{marginLeft:"30rem",marginTop:"2rem"}}>ยืนยัน</button> 
+
           </div>
          </form> 
 

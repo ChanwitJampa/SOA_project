@@ -22,6 +22,8 @@ import ApproveStatusForSuperComponent from "./components/ApproveStatusForSuperCo
 import NewsAddComponent from "./components/NewsAddComponent";
 import LabComponent from "./components/LabComponent";
 import TestResultComponent from "./components/TestResultComponent";
+import LabAddComponent from "./components/LabAddComponent";
+import LabEditComponent from "./components/LabEditComponent";
 
 const MyRoute=()=>{
     return(
@@ -39,6 +41,7 @@ const MyRoute=()=>{
 
 
                 <Route path="/news" exact component={NewsComponent}/>
+                <Route path="/addnews/:_id" exact component={NewsAddComponent} />
                 <Route path="/organization" exact component={OrganizationComponent} />
                 <Route path="/organization1" exact component={OrganizationComponent1} />
                 <Route path="/checkstatusfornisit" exact component={CheckStatusForNisitComponent} />
@@ -48,9 +51,12 @@ const MyRoute=()=>{
                 <Route path="/req" exact component={ReqComponent} />
                 <Route path="/addreq" exact component={ReqAddComponent} />
                 <Route path="/appstatussuper" exact component={ApproveStatusForSuperComponent} />
-                <Route path="/addnews/:_id" exact component={NewsAddComponent} />
                 <Route path="/appstatussuper/:_id" exact component={ApproveStatusForSuperComponent} />
+
                 <Route path="/lab" exact component={LabComponent} />
+                <Route path="/addlab" exact component={LabAddComponent} />
+                <Route path="/editlab/:_id" exact component={LabEditComponent} />
+
                 <Route path="/testresult" exact component={TestResultComponent} />
                 
             </Switch>

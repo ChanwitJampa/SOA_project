@@ -145,7 +145,7 @@
 
 .newBox{
   width: 100%;
-  height: 15rem;
+  height: 8rem;
   background-color: #ffffff;
   border-radius: 0.5rem;
   border-color: rgb(179, 179, 179);
@@ -163,7 +163,7 @@
 
 .middleBox{
   width: 70%;
-  height: 7rem;
+  height: 3rem;
 }
 
 
@@ -176,7 +176,7 @@
 
 .corpName{
   font-size: 1.8rem;
-  font-weight: bold;
+  font-weight: 400;
   padding-left: 2rem;
   padding-top: 1rem;
   margin-bottom: 2rem;

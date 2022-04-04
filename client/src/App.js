@@ -18,7 +18,9 @@ import BarLoader from "react-spinners/BarLoader";
 
 import { Table, Header } from "semantic-ui-react";
 import { Icon } from "semantic-ui-react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import { faCalendar, faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
+
 // import { virus-covid } from "@fortawesome/free-solid-svg-icons";
 
 import {
@@ -42,6 +44,7 @@ import {
   EditOutlined,
   PlusOutlined,
   FormOutlined,
+  FieldNumberOutlined
 } from "@ant-design/icons";
 
 import { Button } from "antd";
@@ -49,7 +52,7 @@ import { Button } from "antd";
 function App() {
 
   function consolelog() {
-    console.log(announce);
+    console.log(officers);
   }
 
   function swalalert() {
@@ -58,16 +61,16 @@ function App() {
   )
   }
 
-  const [announce, setAnnounce] = useState([]);
+  const [officers, setofficers] = useState([]);
 
   const fetchData = () => {
     axios
-      .get(`http://localhost:5000/api/announces`)
+      .get(`https://soa-project-final.herokuapp.com/api/officers/`)
       .then((res) => {
-        setAnnounce(res.data);
-        console.log(res.data);
+        setofficers(res.data.body);
+        console.log(res.data.body);
         console.log("ANNOUCE  = ")
-        console.log(announce)
+        console.log(officers)
       })
       .catch((err) => {
         console.log(err);
@@ -86,14 +89,14 @@ function App() {
   const searchItems = (searchValue) => {
     setSearchInput(searchValue)
     if (searchInput !== '') {
-        const filteredData = announce.filter((item) => {
+        const filteredData = officers.filter((item) => {
             return Object.values(item).join('').toLowerCase().includes(searchInput.toLowerCase())
         })
         setFilteredResults(filteredData)
         console.log(filteredData);
     }
     else{
-        setFilteredResults(announce)
+        setFilteredResults(officers)
     }
 }
 
@@ -117,7 +120,7 @@ function App() {
         )
         //delete
         axios
-          .delete(`http://localhost:5000/api/announces/${id}`)
+          .delete(`https://soa-project-final.herokuapp.com/api/officers/${id}`)
           .then((res) => {
             console.log("DELETE SUCCESS");
             console.log(res);
@@ -243,12 +246,12 @@ function App() {
 
 
           {searchInput.length > 1 ? (
-                    filteredResults.map((announce) => {
+                    filteredResults.map((officers) => {
                         return (
                             <div className="newBox">
                 
                             <div className="topBox">
-                              <h1 className="corpName">{announce.titleName}</h1>
+                              <h1 className="corpName">{officers.firstName} {officers.lastName}</h1>
                 
                               {/* <h1 className="postDate">
                                 <NotificationOutlined
@@ -258,14 +261,14 @@ function App() {
                                     color: "#019267",
                                   }}
                                 />
-                                {announce.createtime}
+                                {officers.createtime}
                               </h1> */}
                             </div>
                 
                             {/* <div className="middleBox">
                 
                             <h1 className="postText">
-                              {announce.detail}
+                              {officers.detail}
                             </h1>
                 
                             </div> */}
@@ -276,16 +279,9 @@ function App() {
                                 
                 
                                 <h1 className="postText2">
-                                  <PhoneOutlined
-                                    style={{
-                                      marginLeft: "0rem",
-                                      marginRight: "1rem",
-                                      fontSize: "1.5rem",
-                                      color: "#488FB1",
-                                    }}
-                                  />{" "}
-                                  {announce.phoneNumber}{" "}
-                                  <MailOutlined
+                                <FontAwesomeIcon icon={faCalendarAlt} style={{color:"crimson",marginRight:"1rem",fontSize: "1.5rem",}}/>
+                                  {officers.BOD}{" "}
+                                  <FieldNumberOutlined
                                     style={{
                                       marginLeft: "2rem",
                                       marginRight: "1rem",
@@ -293,7 +289,7 @@ function App() {
                                       color: "#019267",
                                     }}
                                   />{" "}
-                                  {announce.email}
+                                  {officers.email}
                                 </h1>
                               </div>
                 
@@ -304,11 +300,11 @@ function App() {
                                 
                                 {getRole()=='Professor' &&(
                                         <div>
-                                          <Link to={`/addnews/${announce._id}`}>
+                                          <Link to={`/addnews/${officers._id}`}>
                                             
                                             <EditOutlined
                                               onClick={() => {
-                                                // deleteItem(announce._id);
+                                                // deleteItem(officers._id);
                                               }}
                                               style={{
                                                 marginRight: "1rem",
@@ -320,7 +316,7 @@ function App() {
                                           </Link>
                                             <DeleteFilled
                                               onClick={() => {
-                                                deleteItem(announce._id);
+                                                deleteItem(officers._id);
                                               }}
                                               style={{
                                                 marginRight: "3rem",
@@ -339,7 +335,7 @@ function App() {
                 
                                 <div className="">
                 
-                                  <h1 className="postType">{announce.type}</h1> 
+                                  <h1 className="postType">{officers.position}</h1> 
                 
                                   
                 
@@ -353,12 +349,12 @@ function App() {
                         )
                     })
                 ) : (
-                    announce.map((announce) => {
+                    officers.map((officers) => {
                         return (
                             <div className="newBox">
                 
                             <div className="topBox">
-                              <h1 className="corpName">{announce.titleName}</h1>
+                              <h1 className="corpName">{officers.firstName} {officers.lastName}</h1>
                 
                               {/* <h1 className="postDate">
                                 <NotificationOutlined
@@ -368,14 +364,14 @@ function App() {
                                     color: "#019267",
                                   }}
                                 />
-                                {announce.createtime}
+                                {officers.createtime}
                               </h1> */}
                             </div>
                 
                             {/* <div className="middleBox">
                 
                             <h1 className="postText">
-                                  {announce.detail}
+                                  {officers.detail}
                                 </h1>
                 
                             </div> */}
@@ -386,16 +382,9 @@ function App() {
                                 
                 
                                 <h1 className="postText2">
-                                  <PhoneOutlined
-                                    style={{
-                                      marginLeft: "0rem",
-                                      marginRight: "1rem",
-                                      fontSize: "1.5rem",
-                                      color: "#488FB1",
-                                    }}
-                                  />{" "}
-                                  {announce.phoneNumber}{" "}
-                                  <MailOutlined
+                                <FontAwesomeIcon icon={faCalendarAlt} style={{color:"crimson",marginRight:"1rem",fontSize: "1.5rem",}}/>
+                                  {officers.BOD}{" "}
+                                  <FieldNumberOutlined
                                     style={{
                                       marginLeft: "2rem",
                                       marginRight: "1rem",
@@ -403,7 +392,7 @@ function App() {
                                       color: "#019267",
                                     }}
                                   />{" "}
-                                  {announce.email}
+                                  {officers.IDCard}
                                 </h1>
                               </div>
                 
@@ -413,11 +402,11 @@ function App() {
                                   
                                 {getRole()=='Professor' &&(
                                         <div>
-                                          <Link to={`/addnews/${announce._id}`}>
+                                          <Link to={`/addnews/${officers._id}`}>
                                             
                                             <EditOutlined
                                               onClick={() => {
-                                                // deleteItem(announce._id);
+                                                // deleteItem(officers._id);
                                               }}
                                               style={{
                                                 marginRight: "1rem",
@@ -429,7 +418,7 @@ function App() {
                                           </Link>
                                             <DeleteFilled
                                               onClick={() => {
-                                                deleteItem(announce._id);
+                                                deleteItem(officers._id);
                                               }}
                                               style={{
                                                 marginRight: "3rem",
@@ -447,7 +436,7 @@ function App() {
                 
                                 <div className="">
                 
-                                  <h1 className="postType">{announce.type}</h1> 
+                                  <h1 className="postType">{officers.position}</h1> 
                 
                                   
                 

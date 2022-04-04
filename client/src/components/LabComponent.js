@@ -9,12 +9,27 @@ import axios from "axios";
 import { Table, Divider, Button } from "antd";
 // import 'antd/dist/antd.css';
 import { DownloadOutlined,FormOutlined } from "@ant-design/icons";
+import Swal from "sweetalert2";
+import {
+  SmileTwoTone,
+  HeartTwoTone,
+  CheckCircleTwoTone,
+  ClockCircleOutlined,
+  NotificationOutlined,
+  PhoneOutlined,
+  MailOutlined,
+  DeleteOutlined,
+  DeleteFilled,
+  EditOutlined,
+  PlusOutlined,
+  FieldNumberOutlined
+} from "@ant-design/icons";
 
 
 const LabComponent = () => {
   const [searchAnnounce, setSearchAnnounce] = useState("");
   const [requests, setRequest] = useState([]);
-  const [users, setUser] = useState([]);
+  const [labs, setlabs] = useState([]);
 
   const [filteredResults, setFilteredResults] = useState([]);
   const [searchInput, setSearchInput] = useState('');
@@ -58,10 +73,10 @@ const LabComponent = () => {
       });
 
       axios
-      .get(`http://localhost:5000/api/users`)
+      .get(`https://soa-project-final.herokuapp.com/api/labs/`)
       .then((res) => {
       
-        setUser(res.data);
+        setlabs(res.data.body);
         console.log(res);
       })
       .catch((err) => {
@@ -80,6 +95,40 @@ const LabComponent = () => {
 
     // console.log(requests);
   }, []);
+
+  const deleteItem = (id) => {
+    //askbeforeDelete
+    Swal.fire({
+      title: 'คุณต้องการลบข้อมูลนี้ใช่หรือไม่?',
+      text: "ข้อมูลที่ลบจะไม่สามารถกู้คืนได้",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'ยืนยัน',
+      cancelButtonText: 'ยกเลิก'
+    }).then((result) => {
+      if (result.value) {
+        Swal.fire(
+          'ลบข้อมูลสำเร็จ',
+          'ข้อมูลของคุณถูกลบเรียบร้อยแล้ว',
+          'success'
+        )
+        //delete
+        axios
+          .delete(`https://soa-project-final.herokuapp.com/api/labs/${id}`)
+          .then((res) => {
+            console.log("DELETE SUCCESS");
+            console.log(res);
+            fetchData();
+          })
+          .catch((err) => {
+            console.log("DELETE NOT SUCCESS");
+            console.log(err);
+          });
+      }
+    })
+  }
 
 
   let Button
@@ -124,7 +173,7 @@ const LabComponent = () => {
               onChange={(e) => searchItems(e.target.value)}
             ></input>
 
-                        <Link to="/news">
+                        <Link to="/addlab">
                             <button
                             to=""
                             type="submit"
@@ -196,34 +245,47 @@ const LabComponent = () => {
           ) : ( <table class="table table-hover">
             <thead>
             <tr className="organ-head">
-                <th scope="col">เลขรหัสนิสิต</th>
-                <th scope="col">ชื่อ</th>
-                <th scope="col">ชื่อบริษัท</th>
-                <th scope="col">ชื่อตำแหน่ง</th>
-                <th scope="col">ฝึกงานหรือสหกิจ</th>
-                <th scope="col">วันที่ยื่นคำร้อง</th>
-                <th scope="col">สถานะ</th>
+                <th scope="col">idLab</th>
+                <th scope="col">หมายเลขห้อง</th>
+                <th scope="col">ดีเทล</th>
+                <th scope="col">ประเภทห้อง</th>
                 <th scope="col"><div className="">
-                      <FontAwesomeIcon icon={faBars} />
-                    </div></th>
+                      {/* <FontAwesomeIcon icon={faBars} /> */}
+                      แก้ไข
+                    </div>
+                </th>
+                <th scope="col"><div className="">
+                      {/* <FontAwesomeIcon icon={faBars} /> */}
+                      ลบ
+                    </div>
+                </th>
               </tr>
-              {requests
-                .filter((request) => request.studentID.includes(""))
-                .map((filteredRequest) => {
+              {
+                labs.map((filteredRequest) => {
                   return (
                     <tr className="organ-in">
-                      <td>{filteredRequest.studentID}</td>
-                      <td>{filteredRequest.firstName}</td>
-                      <td>{filteredRequest.companyName}</td>
-                      <td>{filteredRequest.jobTitle}</td>
-                      <td>{filteredRequest.typeRequest}</td>
-                      <td>{filteredRequest.createtime}</td>
-                      <td>{filteredRequest.status}</td>
+                      <td>{filteredRequest._id}</td>
+                      <td>{filteredRequest.roomNumber}</td>
+                      <td>{filteredRequest.detail}</td>
+                      <td>{filteredRequest.type}</td>
                       {/* <td>{Button}</td> */}
                       <td>
-                        {<Link to={`/appstatussuper/${filteredRequest._id}`}>
-                          <button class="btn btn-danger">เปลี่ยนสถานะ</button>
+                        {<Link to={`/editlab/${filteredRequest._id}`}>
+                          <button class="btn btn-danger" style={{backgroundColor:"blue"}}>แก้ไข</button>
                         </Link>}
+                      </td>
+                      <td>
+                      <DeleteFilled
+                                              onClick={() => {
+                                                deleteItem(filteredRequest._id);
+                                              }}
+                                              style={{
+                                                marginRight: "0rem",
+                                                color: "#B33030",
+                                                fontSize: "1.5rem",
+                                              }}
+                                            />
+                        
                       </td>
                       {/* <td>{<Link to={`/appstatussuper`}><button class="btn btn-danger">เปลี่ยนสถานะ</button></Link>}</td> */}
                     </tr>
@@ -233,7 +295,7 @@ const LabComponent = () => {
           </table>)}
 
 
-
+              
 
         </div>
       </div>

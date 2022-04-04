@@ -5,11 +5,11 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import { faAdd } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import Swal from "sweetalert2";
-const NewsComponent=()=>{
+const LabAddComponent=()=>{
     // const [state,setState]=useState({
     //     organizationID:"621a99528503e41d702f31f0",
     //     organizationName:"มหาวิทยาลัยเกษตรกำแพงแสน",
-    //     lastName:"",
+    //     detail:"",
     // })
 
   const [officers, setofficers] = useState([]);
@@ -17,7 +17,7 @@ const NewsComponent=()=>{
 
     const fetchData = () => {
         axios
-          .get(`https://soa-project-final.herokuapp.com/api/officers/`)
+          .get(`https://soa-project-final.herokuapp.com/api/labs/`)
           .then((response) => {
             console.log(response.data)
             setofficers(response.data);
@@ -32,37 +32,29 @@ const NewsComponent=()=>{
       }, []);
     
     const [state,setState]=useState({
-        firstName: "",
-        lastName: "",
-        BOD: "",
-        IDCard: "",
-        position: "",
+        roomNumber: "",
+        detail: "",
+        type: "",
       })
     
     
-      const {firstName,
-        lastName,
-        BOD,
-        IDCard,
-        position,}=state
+      const {roomNumber,
+        detail,
+        type,}=state
 
     const signinForm=(event)=>{
         event.preventDefault();
-        axios.post(`https://soa-project-final.herokuapp.com/api/officers/`,{
-            firstName,
-            lastName,
-            BOD,
-            IDCard,
-            position,}).then(res=>{
+        axios.post(`https://soa-project-final.herokuapp.com/api/labs/`,{
+            roomNumber,
+            detail,
+            type,}).then(res=>{
             console.log(res.data)
             setState(res.data)
             console.log(state)
             setState({...state,
-                firstName: "",
-                lastName: "",
-                BOD: "",
-                IDCard: "",
-                position: "",
+                roomNumber: "",
+                detail: "",
+                type: "",
                 
                 })
                 Swal.fire(
@@ -71,7 +63,7 @@ const NewsComponent=()=>{
                     
                     
                 ).then(()=>{
-                    window.location.href = "/"
+                    window.location.href = "/lab"
                 })
         })
         .catch((error)=>{
@@ -95,21 +87,21 @@ const NewsComponent=()=>{
 
 
     // const inputValue=name=>event=>{
-    //   /*  setState({...state,[name]:organizationID,organizationName,BOD,detial,position})*/
-    //     /*setUser({...user,[name]:BOD,IDCard})*/
+    //   /*  setState({...state,[name]:organizationID,organizationName,type,detial,position})*/
+    //     /*setUser({...user,[name]:type,IDCard})*/
     // }
     // const {organizationID,organizationName,image,topic,detial}=state
-    /*const{BOD,IDCard,position}=user*/
+    /*const{type,IDCard,position}=user*/
     /*const signinForm=(event)=>{
         event.preventDefault();
-        axios.post(`http://localhost:5000/api/login`,{organizationName,lastName,BOD,IDCard,position}).then(res=>{
+        axios.post(`http://localhost:5000/api/login`,{organizationName,detail,type,IDCard,position}).then(res=>{
             console.log(res.data)
             setState(res.data)
             console.log(state)
             setState({...state,
                 organizationName: "",
                 detial:"",
-                BOD: "",
+                type: "",
                 IDCard:"",
                 position:"",
                 })
@@ -127,31 +119,31 @@ const NewsComponent=()=>{
         <div>
             <NavbarComponent/>
             <div className="container"> 
-                <h1>กรอกข้อมูลเจ้าหน้าที่</h1>
+                <h1>กรอกข้อมูล LAB</h1>
 
                 <form onSubmit={signinForm}>
 
                     <div className="b1">
                         <div className="formnews">
-                        <label>ชื่อจริง</label>
-                        <input position="text" id="disabledInput" className="form-control" placeholder="กรอกชื่อจริง" onChange={inputValue("firstName")} />
+                        <label>เลขห้อง</label>
+                        <input position="text" id="disabledInput" className="form-control" placeholder="กรอกเลขห้อง" onChange={inputValue("roomNumber")} />
                         </div>
                         <div className="formnews">
-                        <label>นามสกุล</label>
-                        <input position="text" id="disabledInput" className="form-control" placeholder="กรอกนามสกุล" onChange={inputValue("lastName")}/>
+                        <label>รายละเอียด</label>
+                        <input position="text" id="disabledInput" className="form-control" placeholder="กรอกรายละเอียด" onChange={inputValue("detail")}/>
                         </div>
                         <div className="formnews">
-                        <label>วันเกิด</label>
-                        <input position="text" id="disabledInput" className="form-control" placeholder="dd/mm/yy" onChange={inputValue("BOD")}/>
+                        <label>ประเภทห้อง</label>
+                        <input position="text" id="disabledInput" className="form-control" placeholder="ประเภทห้อง" onChange={inputValue("type")}/>
                         </div>
-                        <div className="formnews">
+                        {/* <div className="formnews">
                         <label>กรอกเลขบัตรประชาชน</label>
                         <input position="text" id="disabledInput" className="form-control"  placeholder="กรอก IDCard ของคุณ" onChange={inputValue("IDCard")}/>
                         </div>
                         <div className="formnews">
                         <label>ตำแหน่ง</label>
                         <input position="text" id="disabledInput" className="form-control"  placeholder="ตำแหน่ง"onChange={inputValue("position")}/>
-                        </div>
+                        </div> */}
                         
 
                         <button position="submit" className="btn btn-color"  style={{marginLeft:"35rem",marginTop:"2rem",color:"#F5F5F5"}}>อัพโหลดข้อมูลเจ้าหน้าที่</button> 
@@ -163,4 +155,4 @@ const NewsComponent=()=>{
         </div>
     );
 };
-export default NewsComponent;
+export default LabAddComponent;

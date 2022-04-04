@@ -1,7 +1,7 @@
 import {Link,withRouter} from "react-router-dom";
 import { useEffect, useState } from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faArrowRightFromBracket, faBullhorn, faHome, faHospital, faMap, faPlus, faRegistered, faSyringe, faList, faUser, faPowerOff, faNewspaper, faIndustry, faBuilding, faClipboardCheck, faFileContract, faChartLine, faBuildingColumns, faCircleCheck, faEnvelopeOpen, faHouseChimneyMedical, faClapperboard } from "@fortawesome/free-solid-svg-icons";
+import {faArrowRightFromBracket, faBullhorn, faHome, faHospital, faMap, faPlus, faRegistered, faSyringe, faList, faUser, faPowerOff, faNewspaper, faIndustry, faBuilding, faClipboardCheck, faFileContract, faChartLine, faBuildingColumns, faCircleCheck, faEnvelopeOpen, faHouseChimneyMedical, faClapperboard, faPersonWalking, faPersonBooth, faPersonDress, faPersonWalkingWithCane, faAtlas, faListNumeric, faListUl, faClipboardList, faUserNurse, faUserDoctor, faWheelchair } from "@fortawesome/free-solid-svg-icons";
 //import { getUser,logout } from "../servies/authorize";
 import { getRole, getUser,logout,getStudentID,getLastName,getFirstName } from "../servies/authorize";
 import './NavbarComponent.css';
@@ -28,11 +28,11 @@ const NavbarComponent=(props)=>{
 
     //useEffect
     useEffect(()=>{
-        console.log(getUser())
-        console.log(getRole())
-        console.log(getStudentID())
-        console.log(getLastName())
-        console.log(getFirstName())
+        // console.log(getUser())
+        // console.log(getRole())
+        // console.log(getStudentID())
+        // console.log(getLastName())
+        // console.log(getFirstName())
     },[])
 
     return(
@@ -95,8 +95,8 @@ const NavbarComponent=(props)=>{
             <div to="" className="sidenav-link2"><FontAwesomeIcon icon={faUser} className="sidenav-iconRole"/><h1 className="roleText">{getRole()}</h1></div>
             <div to="" className="sidenav-link2"><FontAwesomeIcon icon={faUser} className="sidenav-icon2"/></div>
             <div to="" className="sidenav-link2"><FontAwesomeIcon icon={faList} className="sidenav-icon3"/></div>
-            <Link to="/" className="sidenav-link"><FontAwesomeIcon icon={faNewspaper} className="sidenav-icon"/>ข่าวสารประกาศ</Link>
-            <Link to="/organization1" className="sidenav-link"><FontAwesomeIcon icon={faBuilding} className="sidenav-icon"/>สถานประกอบการ</Link>
+            <Link to="/" className="sidenav-link"><FontAwesomeIcon icon={faUserDoctor} className="sidenav-icon"/>เจ้าหน้าที่</Link>
+            <Link to="/organization1" className="sidenav-link"><FontAwesomeIcon icon={faWheelchair} className="sidenav-icon"/>ผู้ป่วย</Link>
             {/*<Link to="/organization" className="sidenav-link"><FontAwesomeIcon icon={faBuilding} className="sidenav-icon"/>สถานประกอบการ</Link>*/}
             {getRole()=='Student' &&(
                 <div>
@@ -115,7 +115,7 @@ const NavbarComponent=(props)=>{
                 )
             } */}
             <Link to="/lab" className="sidenav-link"><FontAwesomeIcon icon={faHouseChimneyMedical} className="sidenav-icon"/>Lab</Link>
-            <Link to="/testresult" className="sidenav-link"><FontAwesomeIcon icon={faClapperboard} className="sidenav-icon"/>PTPCR</Link>
+            <Link to="/testresult" className="sidenav-link"><FontAwesomeIcon icon={faClipboardList} className="sidenav-icon"/>PTPCR</Link>
 
 
         </div>
