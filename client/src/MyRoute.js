@@ -24,6 +24,8 @@ import LabComponent from "./components/LabComponent";
 import TestResultComponent from "./components/TestResultComponent";
 import LabAddComponent from "./components/LabAddComponent";
 import LabEditComponent from "./components/LabEditComponent";
+import TestResultEditComponent from "./components/TestResultEditComponent"; 
+import TestResultAddComponent from "./components/TestResultAddComponent";
 
 const MyRoute=()=>{
     return(
@@ -58,6 +60,8 @@ const MyRoute=()=>{
                 <Route path="/editlab/:_id" exact component={LabEditComponent} />
 
                 <Route path="/testresult" exact component={TestResultComponent} />
+                <Route path="/addresult" exact component={TestResultAddComponent} />
+                <Route path="/editresult/:_id" exact component={TestResultEditComponent} />
                 
             </Switch>
         </BrowserRouter>

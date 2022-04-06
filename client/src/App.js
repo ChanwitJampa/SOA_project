@@ -220,7 +220,7 @@ function App() {
                           // onClick={}
                           style={{
                             backgroundColor: "#02BC77",
-                            width: "10rem",
+                            width: "14rem",
                             height: "3rem",
                           }}
                         >
@@ -232,7 +232,7 @@ function App() {
                               color: "#FFFFF",
                             }}
                           />
-                          เพิ่มประกาศ
+                          เพิ่มข้อมูลเจ้าหน้าที่
                         </button>
 
                       </Link>
