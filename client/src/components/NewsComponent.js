@@ -13,17 +13,33 @@ const NewsComponent=()=>{
     // })
 
   const [officers, setofficers] = useState([]);
+  const [labs, setlabs] = useState([]);
+
+  const [labID,setLab] = useState([]);
 
 
     const fetchData = () => {
         axios
           .get(`https://soa-project-final.herokuapp.com/api/officers/`)
           .then((response) => {
-            console.log(response.data)
-            setofficers(response.data);
+            console.log(response.data.body)
+            setofficers(response.data.body);
     
           })
           .catch((err) => console.log(err));
+
+        axios
+          .get(`https://soa-project-final.herokuapp.com/api/labs/`)
+          .then((response) => {
+            console.log(response.data.body)
+            setlabs(response.data.body);
+    
+          })
+          .catch((err) => console.log(err));
+
+
+
+
       };
     
       //ใช้ useEffect ในการสั่งใช้งาน fetchData ทันทีที่เปิดหน้านี้ขึ้นมา
@@ -53,7 +69,8 @@ const NewsComponent=()=>{
             lastName,
             BOD,
             IDCard,
-            position,}).then(res=>{
+            position,
+            labID}).then(res=>{
             console.log(res.data)
             setState(res.data)
             console.log(state)
@@ -65,6 +82,7 @@ const NewsComponent=()=>{
                 position: "",
                 
                 })
+                setLab("");
                 Swal.fire(
                     'เพิ่มคำร้องร้องสำเร็จ',
                     'กดตกลงเพื่อไปยังหน้าหลัก',
@@ -75,7 +93,7 @@ const NewsComponent=()=>{
                 })
         })
         .catch((error)=>{
-            console.log(error);
+            console.log(error.response);
             Swal.fire(
                 'เพิ่มคำร้องไม่สำเร็จ',
                )
@@ -123,11 +141,38 @@ const NewsComponent=()=>{
                )
         })
     }*/
+    const inputHospital = (id) => {
+        console.log(id);
+
+        // const Name = allhospital.filter((hospital) => {
+        //     if (hospital._id === id) {
+        //         return hospital
+        //     }
+        // }).map((hospital) => {
+        //     return hospital.hospitalName
+        // })
+        // setHospitalName(Name.toString());
+
+        setLab(id);
+        // console.log(lab);
+
+    }
+
+    const onclick = () => {
+
+        console.log(labID);
+
+    }
+
+
     return(
         <div>
             <NavbarComponent/>
             <div className="container"> 
                 <h1>กรอกข้อมูลเจ้าหน้าที่</h1>
+
+                {/* <button onClick={onclick} className="btn btn-color"  style={{marginLeft:"35rem",marginTop:"2rem",color:"#F5F5F5"}}>alert</button>  */}
+
 
                 <form onSubmit={signinForm}>
 
@@ -151,6 +196,26 @@ const NewsComponent=()=>{
                         <div className="formnews">
                         <label>ตำแหน่ง</label>
                         <input position="text" id="disabledInput" className="form-control"  placeholder="ตำแหน่ง"onChange={inputValue("position")}/>
+                        </div>
+                        <div className="formnews">
+                            <label for="exampleFormControlSelect1">Lab ID</label>
+                                <select onChange={(event) => inputHospital(event.target.value)} class="form-control" id="exampleFormControlSelect1">
+                                    {
+                                        labs.map((lab => {
+                                            return (
+                                                <option value={lab._id}>{lab._id}</option>
+                                            )
+                                        }))
+                                    }
+
+
+                                    {/* <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option> */}
+
+                                </select>
                         </div>
                         
 

@@ -95,6 +95,7 @@ const NavbarComponent=(props)=>{
             <div to="" className="sidenav-link2"><FontAwesomeIcon icon={faUser} className="sidenav-iconRole"/><h1 className="roleText">{getRole()}</h1></div>
             <div to="" className="sidenav-link2"><FontAwesomeIcon icon={faUser} className="sidenav-icon2"/></div>
             <div to="" className="sidenav-link2"><FontAwesomeIcon icon={faList} className="sidenav-icon3"/></div>
+            <Link to="/documents" className="sidenav-link"><FontAwesomeIcon icon={faMap} className="sidenav-icon"/>Map</Link>
             <Link to="/" className="sidenav-link"><FontAwesomeIcon icon={faUserDoctor} className="sidenav-icon"/>เจ้าหน้าที่</Link>
             <Link to="/organization1" className="sidenav-link"><FontAwesomeIcon icon={faWheelchair} className="sidenav-icon"/>ผู้ป่วย</Link>
             {/*<Link to="/organization" className="sidenav-link"><FontAwesomeIcon icon={faBuilding} className="sidenav-icon"/>สถานประกอบการ</Link>*/}
