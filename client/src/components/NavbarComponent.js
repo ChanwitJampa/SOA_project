@@ -40,7 +40,7 @@ const NavbarComponent=(props)=>{
             <div className="navbar">
                 <div className="navbar-logo">
                     <h1 className="navbar-logolink">
-                        ระบบจัดการการฝึกงาน มหาวิทยาลัยเกษตรศาสตร์
+                        ระบบจัดการโรงพยาบาล
                     </h1>
                 </div>
                 <ul>
