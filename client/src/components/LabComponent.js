@@ -245,7 +245,7 @@ const LabComponent = () => {
           ) : ( <table class="table table-hover">
             <thead>
             <tr className="organ-head">
-                <th scope="col">idLab</th>
+                {/* <th scope="col">idLab</th> */}
                 <th scope="col">หมายเลขห้อง</th>
                 <th scope="col">ดีเทล</th>
                 <th scope="col">ประเภทห้อง</th>
@@ -264,7 +264,7 @@ const LabComponent = () => {
                 labs.map((filteredRequest) => {
                   return (
                     <tr className="organ-in">
-                      <td>{filteredRequest._id}</td>
+                      {/* <td>{filteredRequest._id}</td> */}
                       <td>{filteredRequest.roomNumber}</td>
                       <td>{filteredRequest.detail}</td>
                       <td>{filteredRequest.type}</td>

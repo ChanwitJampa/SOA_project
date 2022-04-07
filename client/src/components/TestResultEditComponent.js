@@ -53,7 +53,7 @@ const TestResultEditComponent=(props)=>{
 
 
       useEffect(()=>{
-        axios.get(`https://soa-project-final.herokuapp.com/api/rtpcrs//${props.match.params._id}`)
+        axios.get(`https://soa-project-final.herokuapp.com/api/rtpcrs/${props.match.params._id}`)
         .then(response=>{
             const {_id,patientID,officerID,labID,result,detail}= response.data.body
             setState({...state,_id,patientID,officerID,labID,result,detail})

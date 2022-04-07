@@ -28,10 +28,10 @@ const NewsAddComponent=(props)=>{
     // const [state,setState]=useState({
     //     organizationID:"621a99528503e41d702f31f0",
     //     organizationName:"มหาวิทยาลัยเกษตรกำแพงแสน",
-    //     detail:"",
+    //     lastName:"",
     // })
 
-  const [announces, setannounces] = useState([]);
+  const [officer, setofficer] = useState([]);
 
 
     // const fetchData = () => {
@@ -52,10 +52,12 @@ const NewsAddComponent=(props)=>{
 
 
       useEffect(()=>{
-        axios.get(`http://localhost:5000/api/announces/${props.match.params._id}`)
+        axios.get(`https://soa-project-final.herokuapp.com/api/officers/${props.match.params._id}`)
         .then(response=>{
-            const {_id,titleName,detail,phoneNumber,email,type}= response.data
-            setState({...state,_id,titleName,detail,phoneNumber,email,type})
+            const {_id,firstName,lastName,BOD,IDCard,position}= response.data.body
+            setState({...state,_id,firstName,lastName,BOD,IDCard,position})
+            setofficer(response.data.body.body)
+            console.log(response.data.body.body)
         })
         .catch(err=>alert(err))
         // eslint-disable-next-line
@@ -64,20 +66,20 @@ const NewsAddComponent=(props)=>{
 
     const [state,setState]=useState({
         _id:"",
-        titleName: "",
-        detail: "",
-        phoneNumber: "",
-        email: "",
-        type: "",
+        firstName: "",
+        lastName: "",
+        BOD: "",
+        IDCard: "",
+        position: "",
       })
     
     
       const {_id,
-        titleName,
-        detail,
-        phoneNumber,
-        email,
-        type,}=state
+        firstName,
+        lastName,
+        BOD,
+        IDCard,
+        position,}=state
         
     const inputValue = (name) => (event) => {
         console.log(name, "=", event.target.value);
@@ -89,8 +91,8 @@ const NewsAddComponent=(props)=>{
 
     const submitForm=(event)=>{
         event.preventDefault();
-        console.table({_id,titleName,detail,phoneNumber,email,type});
-        axios.put(`http://localhost:5000/api/announces/${_id}`,{_id,titleName,detail,phoneNumber,email,type})
+        console.table({_id,firstName,lastName,BOD,IDCard,position});
+        axios.put(`https://soa-project-final.herokuapp.com/api/officers/${_id}`,{_id,firstName,lastName,BOD,IDCard,position})
         .then(response=>{
             Swal.fire(
                 'Alert',
@@ -99,8 +101,8 @@ const NewsAddComponent=(props)=>{
             ).then(()=>{
                 window.location.href = "/"
             })
-            const {_id,titleName,detail,phoneNumber,email,type}=response.data
-            setState({...state,_id,titleName,detail,phoneNumber,email,type})
+            const {_id,firstName,lastName,BOD,IDCard,position}=response.data
+            setState({...state,_id,firstName,lastName,BOD,IDCard,position})
         })
         .catch((error)=>{
             Swal.fire(
@@ -113,22 +115,22 @@ const NewsAddComponent=(props)=>{
     }
 
     // const inputValue=name=>event=>{
-    //   /*  setState({...state,[name]:organizationID,organizationName,phoneNumber,detial,type})*/
-    //     /*setUser({...user,[name]:phoneNumber,email})*/
+    //   /*  setState({...state,[name]:organizationID,organizationName,BOD,detial,type})*/
+    //     /*setUser({...user,[name]:BOD,IDCard})*/
     // }
     // const {organizationID,organizationName,image,topic,detial}=state
-    /*const{phoneNumber,email,type}=user*/
+    /*const{BOD,IDCard,type}=user*/
     /*const signinForm=(event)=>{
         event.preventDefault();
-        axios.post(`http://localhost:5000/api/login`,{organizationName,detail,phoneNumber,email,type}).then(res=>{
+        axios.post(`http://localhost:5000/api/login`,{organizationName,lastName,BOD,IDCard,type}).then(res=>{
             console.log(res.data)
             setState(res.data)
             console.log(state)
             setState({...state,
                 organizationName: "",
                 detial:"",
-                phoneNumber: "",
-                email:"",
+                BOD: "",
+                IDCard:"",
                 type:"",
                 })
                 Swal.fire(
@@ -151,24 +153,24 @@ const NewsAddComponent=(props)=>{
 
                     <div className="n1">
                         <div className="formnews">
-                        <label>ชื่อสถานประกอบการ</label>
-                        <input type="text" id="disabledInput" className="form-control" value={titleName} onChange={inputValue("titleName")} />
+                        <label>ชื่อจริง</label>
+                        <input type="text" id="disabledInput" className="form-control" value={firstName} onChange={inputValue("firstName")} />
                         </div>
                         <div className="formnews">
                         <label>รายละเอียด</label>
-                        <input type="text" id="disabledInput" className="form-control" value={detail} placeholder="กรอกรายละเอียดของคุณ" onChange={inputValue("detail")}/>
+                        <input type="text" id="disabledInput" className="form-control" value={lastName} placeholder="กรอกรายละเอียดของคุณ" onChange={inputValue("lastName")}/>
                         </div>
                         <div className="formnews">
                         <label>เบอร์โทรศัพท์ของสถานประกอบการ</label>
-                        <input type="text" id="disabledInput" className="form-control" value={phoneNumber} placeholder="0xx-xxxxxxx" onChange={inputValue("phoneNumber")}/>
+                        <input type="text" id="disabledInput" className="form-control" value={BOD} placeholder="0xx-xxxxxxx" onChange={inputValue("BOD")}/>
                         </div>
                         <div className="formnews">
-                        <label>email</label>
-                        <input type="text" id="disabledInput" className="form-control"  value={email} onChange={inputValue("email")}/>
+                        <label>IDCard</label>
+                        <input type="text" id="disabledInput" className="form-control"  value={IDCard} onChange={inputValue("IDCard")}/>
                         </div>
                         <div className="formnews">
                         <label>ประเภท(ฝึกงาน/สหกิจ)</label>
-                        <input type="text" id="disabledInput" className="form-control"  value={type} placeholder="ฝึกงาน/สหกิจ"onChange={inputValue("type")}/>
+                        <input type="text" id="disabledInput" className="form-control"  value={position} placeholder="ฝึกงาน/สหกิจ"onChange={inputValue("position")}/>
                         </div>
                         
 

@@ -12,19 +12,59 @@ const TestResultAddComponent=()=>{
     //     officerID:"",
     // })
 
-  const [officers, setofficers] = useState([]);
-
+  const [patient, setpatients] = useState([]);
+  const [patientID, setpatient] = useState([]);
+  const [officer, setofficers] = useState([]);
+  const [officerID, setofficer] = useState([]);
+  const [lab, setlabs] = useState([]);
+  const [labID, setlab] = useState([]);
 
     const fetchData = () => {
-        axios
-          .get(`https://soa-project-final.herokuapp.com/api/rtpcrs/`)
-          .then((response) => {
-            console.log(response.data)
-            setofficers(response.data);
+
+
+        // axios
+        //   .get(`https://soa-project-final.herokuapp.com/api/rtpcrs/`)
+        //   .then((response) => {
+        //     console.log(response.data)
+        //     setofficers(response.data);
     
-          })
-          .catch((err) => console.log(err));
-      };
+        //   })
+        //   .catch((err) => console.log(err));
+
+        axios
+        .get(`https://soa-project-final.herokuapp.com/api/patients/`)
+        .then((res) => {
+        
+            setpatients(res.data.body);
+            console.log(res);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+
+        axios
+        .get(`https://soa-project-final.herokuapp.com/api/officers/`)
+        .then((res) => {
+        
+            setofficers(res.data.body);
+            console.log(res);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+
+        axios
+        .get(`https://soa-project-final.herokuapp.com/api/labs/`)
+        .then((res) => {
+        
+            setlabs(res.data.body);
+            console.log(res);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+
+    };
     
       //ใช้ useEffect ในการสั่งใช้งาน fetchData ทันทีที่เปิดหน้านี้ขึ้นมา
       useEffect(() => {
@@ -32,17 +72,18 @@ const TestResultAddComponent=()=>{
       }, []);
     
     const [state,setState]=useState({
-        patientID: "",
-        officerID: "",
-        labID: "",
+        // patientID: "",
+        // officerID: "",
+        // labID: "",
         result: "",
         detail: "",
       })
     
     
-      const {patientID,
-        officerID,
-        labID,
+      const {
+        // patientID,
+        // officerID,
+        // labID,
         result,
         detail,
     }=state
@@ -50,6 +91,9 @@ const TestResultAddComponent=()=>{
     const signinForm=(event)=>{
         event.preventDefault();
         axios.post(`https://soa-project-final.herokuapp.com/api/rtpcrs/`,{
+            // patientID,
+            // officerID,
+            // labID,
             patientID,
             officerID,
             labID,
@@ -59,15 +103,15 @@ const TestResultAddComponent=()=>{
             setState(res.data)
             console.log(state)
             setState({...state,
-                patientID: "",
-                officerID: "",
-                labID: "",
+                // patientID: "",
+                // officerID: "",
+                // labID: "",
                 result: "",
                 detail: "",
                 
                 })
                 Swal.fire(
-                    'เพิ่มคำร้องร้องสำเร็จ',
+                    'เพิ่มผลตรวจ',
                     'กดตกลงเพื่อไปยังหน้าหลัก',
                     
                     
@@ -124,6 +168,55 @@ const TestResultAddComponent=()=>{
                )
         })
     }*/
+    const inputLab = (id) => {
+        console.log(id);
+
+        // const Name = allhospital.filter((hospital) => {
+        //     if (hospital._id === id) {
+        //         return hospital
+        //     }
+        // }).map((hospital) => {
+        //     return hospital.hospitalName
+        // })
+        // setHospitalName(Name.toString());
+
+        setlab(id);
+        // console.log(lab);
+
+    }
+    const inputOfficer = (id) => {
+        console.log(id);
+
+        // const Name = allhospital.filter((hospital) => {
+        //     if (hospital._id === id) {
+        //         return hospital
+        //     }
+        // }).map((hospital) => {
+        //     return hospital.hospitalName
+        // })
+        // setHospitalName(Name.toString());
+
+        setofficer(id);
+        // console.log(lab);
+
+    }
+    const inputPatient = (id) => {
+        console.log(id);
+
+        // const Name = allhospital.filter((hospital) => {
+        //     if (hospital._id === id) {
+        //         return hospital
+        //     }
+        // }).map((hospital) => {
+        //     return hospital.hospitalName
+        // })
+        // setHospitalName(Name.toString());
+
+        setpatient(id);
+        // console.log(lab);
+
+    }
+    
     return(
         <div>
             <NavbarComponent/>
@@ -133,7 +226,7 @@ const TestResultAddComponent=()=>{
                 <form onSubmit={signinForm}>
 
                     <div className="b1">
-                        <div className="formnews">
+                        {/* <div className="formnews">
                         <label>patientID</label>
                         <input position="text" id="disabledInput" className="form-control" placeholder="กรอกเลขห้อง" onChange={inputValue("patientID")} />
                         </div>
@@ -144,13 +237,63 @@ const TestResultAddComponent=()=>{
                         <div className="formnews">
                         <label>labID</label>
                         <input position="text" id="disabledInput" className="form-control" placeholder="ประเภทห้อง" onChange={inputValue("labID")}/>
+                        </div> */}
+                        <div className="formnews">
+                            <label for="exampleFormControlSelect1">patientID</label>
+                                <select onChange={(event) => inputPatient(event.target.value)} class="form-control" id="exampleFormControlSelect1">
+                                    {
+                                        patient.map((patient => {
+                                            return (
+                                                <option value={patient._id}>{patient._id}</option>
+                                            )
+                                        }))
+                                    }
+
+
+                                    {/* <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option> */}
+
+                                </select>
+                        </div>
+                        <div className="formnews">
+                            <label for="exampleFormControlSelect1">officerID</label>
+                                <select onChange={(event) => inputOfficer(event.target.value)} class="form-control" id="exampleFormControlSelect1">
+                                    {
+                                        officer.map((officer => {
+                                            return (
+                                                <option value={officer._id}>{officer._id}</option>
+                                            )
+                                        }))
+                                    }
+
+
+
+                                </select>
+                        </div>
+                        <div className="formnews">
+                            <label for="exampleFormControlSelect1">labID</label>
+                                <select onChange={(event) => inputLab(event.target.value)} class="form-control" id="exampleFormControlSelect1">
+                                    {
+                                        lab.map((lab => {
+                                            return (
+                                                <option value={lab._id}>{lab._id}</option>
+                                            )
+                                        }))
+                                    }
+
+
+
+                                </select>
                         </div>
                         <div className="formnews">
                         <label>result</label>
                         <input position="text" id="disabledInput" className="form-control" placeholder="ประเภทห้อง" onChange={inputValue("result")}/>
                         </div>
                         <div className="formnews">
-                        <label>officerID</label>
+                        <label>รายละเอียด</label>
                         <input position="text" id="disabledInput" className="form-control" placeholder="ประเภทห้อง" onChange={inputValue("detail")}/>
                         </div>
                         {/* <div className="formnews">

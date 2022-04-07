@@ -29,7 +29,8 @@ import {
 const TestResultComponent = () => {
   const [searchAnnounce, setSearchAnnounce] = useState("");
   const [requests, setRequest] = useState([]);
-  const [labs, setlabs] = useState([]);
+  const [result, setresult] = useState([]);
+  
 
   const [filteredResults, setFilteredResults] = useState([]);
   const [searchInput, setSearchInput] = useState('');
@@ -76,12 +77,13 @@ const TestResultComponent = () => {
       .get(`https://soa-project-final.herokuapp.com/api/rtpcrs/`)
       .then((res) => {
       
-        setlabs(res.data.body);
+        setresult(res.data.body);
         console.log(res);
       })
       .catch((err) => {
         console.log(err);
       });
+      
 
      
 
@@ -245,7 +247,7 @@ const TestResultComponent = () => {
           ) : ( <table class="table table-hover">
             <thead>
             <tr className="organ-head">
-                <th scope="col">idRTPCR</th>
+                {/* <th scope="col">idRTPCR</th> */}
                 <th scope="col">patientID</th>
                 <th scope="col">officerID</th>
                 <th scope="col">labID</th>
@@ -264,10 +266,10 @@ const TestResultComponent = () => {
                 </th>
               </tr>
               {
-                labs.map((filteredRequest) => {
+                result.map((filteredRequest) => {
                   return (
                     <tr className="organ-in">
-                      <td>{filteredRequest._id}</td>
+                      {/* <td>{filteredRequest._id}</td> */}
                       <td>{filteredRequest.patientID}</td>
                       <td>{filteredRequest.officerID}</td>
                       <td>{filteredRequest.labID}</td>
