@@ -14,8 +14,6 @@ import DocumentComponent from "./components/DocumentComponent";
 import ResultComponent from "./components/ResultComponent";
 import OrganizationComponent1 from "./components/Organizationcomponent1";
 
-import ReqComponent from "./components/ReqComponent";
-import ReqAddComponent from "./components/ReqAddComponent";
 import CheckStatusForNisitComponent from "./components/CheckStatusForNisitComponent";
 import CheckStatusForSuperComponent from "./components/CheckStatusForSuperComponent";
 import ApproveStatusForSuperComponent from "./components/ApproveStatusForSuperComponent";
@@ -55,8 +53,6 @@ const MyRoute=()=>{
                 <Route path="/checkstatusforsuper" exact component={CheckStatusForSuperComponent} />
                 <Route path="/documents" exact component={DocumentComponent} />
                 <Route path="/result" exact component={ResultComponent} />
-                <Route path="/req" exact component={ReqComponent} />
-                <Route path="/addreq" exact component={ReqAddComponent} />
                 <Route path="/appstatussuper" exact component={ApproveStatusForSuperComponent} />
                 <Route path="/appstatussuper/:_id" exact component={ApproveStatusForSuperComponent} />
 

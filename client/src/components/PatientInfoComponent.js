@@ -17,7 +17,8 @@ const PatientInfoComponent = (props) => {
     const [rtpcr, setRtpcr] = useState([]);
     const [hospital, setHospital] = useState([]);
     const [detail, setDetail] = useState([""]);
-
+    const [patientsMedicines, setPatientsMedicines] = useState([]);
+    const [medicine, setMedicine] = useState([]);
     const [num, setNum] = useState(0);
 
     useEffect(() => {
@@ -73,6 +74,28 @@ const PatientInfoComponent = (props) => {
             .catch((err) => {
                 console.log(err);
             });
+
+        axios
+            .get(`http://localhost:5000/api/patientsMedicines`)
+            .then((res) => {
+                setPatientsMedicines(res.data);
+                console.log("patientsMedicines")
+                console.log(res);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+
+        // axios
+        //     .get(`http://158.108.207.7:8080/hospitals/rest/services/medicines`)
+        //     .then((res) => {
+        //         setMedicine(res.data.result);
+        //         console.log("MEDICINE")
+        //         console.log(res);
+        //     })
+        //     .catch((err) => {
+        //         console.log(err);
+        //     });
 
         // axios.get(`http://158.108.207.7:8080/hospitals/rest/services/hospitals`)
         //   .then((res) => {
@@ -163,8 +186,9 @@ const PatientInfoComponent = (props) => {
                             fontSize: "2rem",
                             fontWeight: "bold",
                             marginTop: "5rem",
-                            marginLeft: "2rem",
+                            marginLeft: "-5rem",
                             marginBottom: "5rem",
+                            color: "crimson",
                         }}
                     >
                         ตรวจสอบข้อมูลคนไข้
@@ -174,6 +198,7 @@ const PatientInfoComponent = (props) => {
                             {/* <h1 className="btextStatus">สถานะของคำร้อง</h1>
 
                             <br /> */}
+                            <br/>
                             <h1 className="btextStatus2">ชื่อจริง</h1>
                             <h1 className="btextStatus2">นามสกุล</h1>
                             <h1 className="btextStatus2">วันเกิด</h1>
@@ -210,7 +235,7 @@ const PatientInfoComponent = (props) => {
                 <div style={{marginTop:"5rem",}}></div>
                 
 
-                <h3 style={{marginLeft:"30rem"}}>ผลตรวจทั้งหมด</h3>
+                <h3 style={{marginLeft:"30rem",color:"blue",fontWeight:"bold"}}>ผลตรวจทั้งหมด</h3>
 
                 {rtpcr
                     .filter((rtpcr) => rtpcr.patientID.includes(num))
@@ -220,7 +245,7 @@ const PatientInfoComponent = (props) => {
 
               return (
 
-                <div className="contentBoxS">
+                <div className="contentBoxS" style={{marginTop:"1rem",fontWeight:"bold"}}>
                     <h1 style={{margin:"3rem"}} className="textStatus2">ผลตรวจที่ {i} : {filteredResults.result}</h1>
                     <h1 style={{margin:"3rem"}} className="textStatus2">รายละเอียดที่ {i} : {filteredResults.detail}</h1>
                     {/* <h1 className="textStatus2">test</h1>
@@ -233,7 +258,29 @@ const PatientInfoComponent = (props) => {
 
                 
                 </div>
+                
           )})}
+
+
+                <h3 style={{marginLeft:"30rem",marginTop:"2rem",color:"yellowgreen",fontWeight:"bold"}}>ประวัติการจ่ายยา</h3>
+
+                {patientsMedicines
+                    .filter((patientsMedicines) => patientsMedicines.patientID.includes(num))
+                    .map((filteredResults,i) => {
+              
+                i=i+1;
+
+              return (
+
+                <div className="contentBoxS" style={{marginTop:"1rem",}}>
+                    <h1 style={{margin:"3rem"}} className="textStatus2">ยา ID {i} : {filteredResults.medicineID}</h1>
+                    <h1 style={{margin:"3rem"}} className="textStatus2">ปริมาณ {i} : {filteredResults.amountInMilligrams}</h1>
+                    
+                    
+                
+                </div>
+          )})}
+
                 {/* )})}  */}
 
                 {/* <button type="submit" className="btn btn-color">Download หนังสือขอความอนุเคราะห์</button> 
