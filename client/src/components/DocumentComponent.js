@@ -39,6 +39,8 @@ const DocumentComponent = () => {
 
   const [pName, setpName] = useState("กรุณาเลือกจังหวัด");
 
+  const [thospital, setThospital] = useState([]);
+
   let [loading, setLoading] = useState(false);
   let [color, setColor] = useState("#ffffff");
   const override = `
@@ -98,7 +100,28 @@ const DocumentComponent = () => {
 
   };
 
-  
+  const plaiFetchData = () => {
+    axios
+    .get(
+      `http://localhost:5000/api/hospitals`
+    )
+    .then((response) => {
+      console.log("kokokokokookkokkoko")
+      console.log(response.data);
+      // setHospital(response.data);
+
+      setThospital(response.data);
+      
+      /*setHospital(
+        response.data.slice(
+          response.data.length - 78,
+          response.data.length - 1
+        )
+      );*/
+      console.log({thospital});
+    })
+
+  }
 
 
 
@@ -127,6 +150,9 @@ const DocumentComponent = () => {
     // console.log(getToken())
 
     console.log("Hello");
+    plaiFetchData();
+
+    
     
   }, []);
 
