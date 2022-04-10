@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 //@desc Get PatientsInHospitals
 //@route GET /api/PatientsInHospitals
 //@access Private
-const getHospital = asyncHandler(async (req, res) => {
+const getHospitals = asyncHandler(async (req, res) => {
     try{
         var response2 = await axios.get(`http://158.108.207.7:8080/hospitals/rest/services/hospitals`)
         }
@@ -20,6 +20,6 @@ const getHospital = asyncHandler(async (req, res) => {
 
 
 module.exports = {
-    getHospital,
+    getHospitals,
  
 }

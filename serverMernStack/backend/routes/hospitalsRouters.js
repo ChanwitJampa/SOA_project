@@ -1,9 +1,9 @@
 const express = require('express')
 const router = express.Router()
-const { getHospital } = require('../controllers/hospitalController')
+const { getHospitals } = require('../controllers/hospitalController')
 
 
-router.route('/').get(getHospital)
+router.route('/').get(getHospitals).get()
 
 
 // router.get('/', getUsers)
