@@ -106,7 +106,7 @@ const deletePatientsInHospital = asyncHandler(async (req, res) => {
     }
 
     const pih = await PatientsInHospital.findById(req.params.id)
-    if(!officer){
+    if(!pih){
         res.status(401)
         throw new Error('Incorrect PatientsInHospital id')
     }
