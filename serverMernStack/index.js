@@ -5,11 +5,11 @@ const colors = require('colors')
 const axios = require('axios')
 const connectDB = require('./backend/config/db')
 const auth = require('./backend/middleware/auth')
-
 const multer = require('multer');
 
 
 connectDB()
+
 
 const { errorHandler } = require('./backend/middleware/errorMiddleware')
 
@@ -28,6 +28,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use('/api/users', require('./backend/routes/userRouters'))
 app.use('/api/login', require('./backend/routes/loginRouters'))
 app.use('/api/PatientsInHospitals', require('./backend/routes/patientsInHospitalRouters'))
+app.use('/api/hospitals', require('./backend/routes/hospitalsRouters'))
 // app.use('/api/map', require('./backend/routes/mapRoutes'))
 
 
