@@ -178,9 +178,10 @@ const DocumentComponent = () => {
 
 
   const fecthPatientHospital = () => {
+    const token = getToken();
     axios
     .get(
-      `http://localhost:5000/api/PatientsInHospitals`
+      `http://localhost:5000/api/PatientsInHospitals`,{headers: {Authorization: `Bearer ${token}`}}
     )
     .then((response) => {
       console.log("kokokokokookkokkoko")

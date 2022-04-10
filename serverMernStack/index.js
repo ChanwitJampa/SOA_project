@@ -27,9 +27,9 @@ app.use(express.urlencoded({ extended: false }))
 
 app.use('/api/users', require('./backend/routes/userRouters'))
 app.use('/api/login', require('./backend/routes/loginRouters'))
-app.use('/api/PatientsInHospitals', require('./backend/routes/patientsInHospitalRouters'))
+app.use('/api/PatientsInHospitals',auth, require('./backend/routes/patientsInHospitalRouters'))
 app.use('/api/hospitals', require('./backend/routes/hospitalsRouters'))
-app.use('/api/patientsMedicines', require('./backend/routes/patientsMedicineRouters'))
+app.use('/api/patientsMedicines',auth, require('./backend/routes/patientsMedicineRouters'))
 // app.use('/api/map', require('./backend/routes/mapRoutes'))
 
 

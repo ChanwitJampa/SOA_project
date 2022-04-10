@@ -5,6 +5,7 @@ import "./ApproveStatusForSuperComponent.css";
 import { faSyringe } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
+import { getToken} from "../servies/authorize";
 import { Table, Divider } from "antd";
 // import 'antd/dist/antd.css';
 import { DownloadOutlined, CheckOutlined } from "@ant-design/icons";
@@ -74,9 +75,9 @@ const PatientInfoComponent = (props) => {
             .catch((err) => {
                 console.log(err);
             });
-
+        const token = getToken();
         axios
-            .get(`http://localhost:5000/api/patientsMedicines`)
+            .get(`http://localhost:5000/api/patientsMedicines`,{headers: {Authorization: `Bearer ${token}`}})
             .then((res) => {
                 setPatientsMedicines(res.data);
                 console.log("patientsMedicines")
