@@ -171,7 +171,7 @@ const OrganizationComponent1 = () => {
                 fontSize:"2.5rem"
               }}
             >
-              ผู้ป่วย
+              รายชื่อผู้ป่วยทั้งหมด
             </h1>
             
 

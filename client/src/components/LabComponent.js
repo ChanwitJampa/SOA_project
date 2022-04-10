@@ -247,7 +247,7 @@ const LabComponent = () => {
             <tr className="organ-head">
                 {/* <th scope="col">idLab</th> */}
                 <th scope="col">หมายเลขห้อง</th>
-                <th scope="col">ดีเทล</th>
+                <th scope="col">รายละเอียดห้อง</th>
                 <th scope="col">ประเภทห้อง</th>
                 <th scope="col"><div className="">
                       {/* <FontAwesomeIcon icon={faBars} /> */}

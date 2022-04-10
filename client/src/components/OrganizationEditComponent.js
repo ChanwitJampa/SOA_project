@@ -155,7 +155,7 @@ const OrganizationEditComponent=(props)=>{
                         <input type="text" id="disabledInput" className="form-control" value={firstName} onChange={inputValue("firstName")} />
                         </div>
                         <div className="formnews">
-                        <label>รายละเอียด</label>
+                        <label>นามสกุล</label>
                         <input type="text" id="disabledInput" className="form-control" value={lastName} placeholder="กรอกรายละเอียดของคุณ" onChange={inputValue("lastName")}/>
                         </div>
                         <div className="formnews">
@@ -169,7 +169,7 @@ const OrganizationEditComponent=(props)=>{
                         
                         
 
-                        <button type="submit" className="btn btn-color" style={{color:"#F5F5F5",fontWeight:"bold",marginLeft:"30rem",marginTop:"2rem"}}><CheckOutlined style={{color:"#F5F5F5",fontWeight:"bold",marginRight:"1rem"}}/>แก้ไขประกาศ</button> 
+                        <button type="submit" className="btn btn-color" style={{color:"#F5F5F5",fontWeight:"bold",marginLeft:"30rem",marginTop:"2rem"}}><CheckOutlined style={{color:"#F5F5F5",fontWeight:"bold",marginRight:"1rem"}}/>ยืนยันการแก้ไข</button> 
                     </div>
 
                 </form>
