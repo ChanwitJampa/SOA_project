@@ -21,7 +21,7 @@ const getUsers = asyncHandler(async (req, res) => {
 //@access Private
 const setUser = asyncHandler(async (req, res) => {
 
-    const { email,studentID, password } = req.body
+    const { email,userName, password } = req.body
 
 
     if (email) {
@@ -30,10 +30,10 @@ const setUser = asyncHandler(async (req, res) => {
             res.status(400)
             throw new Error('email user is aleady use')
         }
-        oldUser = await User.findOne({ studentID })
+        oldUser = await User.findOne({ userName })
         if (oldUser) {
             res.status(400)
-            throw new Error('studentID user is aleady use')
+            throw new Error('userName user is aleady use')
         }
     }
     else {
@@ -59,9 +59,9 @@ const setUser = asyncHandler(async (req, res) => {
         res.status(400)
         throw new Error('ใส่ email ด้วย')
     }
-    if(!req.body.studentID){
+    if(!req.body.userName){
         res.status(400)
-        throw new Error('ใส่ studentID ด้วย')
+        throw new Error('ใส่ userName ด้วย')
     }
     if(req.body.role){
         res.status(400)
@@ -72,14 +72,14 @@ const setUser = asyncHandler(async (req, res) => {
         lastName: req.body.lastName,
         idCard: req.body.idCard,
         email: req.body.email,
-        studentID: req.body.studentID,
+        userName: req.body.userName,
         password: req.body.password,
    
     })
 
     //create token
     const token = jwt.sign(
-        { user_id: user._id, studentID },
+        { user_id: user._id, userName },
         process.env.TOKEN_KEY, {
         expiresIn: "2h"
     }
@@ -154,7 +154,7 @@ const getUser = asyncHandler(async (req, res) => {
         user = await User.find({'_id':req.params.id}).select('+password').select('+role').select('-__v').select('-createtime')
     }
   else{
-      user = await User.find({'studentID':req.params.id}).select('+password').select('+role').select('-__v').select('-createtime')
+      user = await User.find({'userName':req.params.id}).select('+password').select('+role').select('-__v').select('-createtime')
   }
    if (user.length >0) {
        res.status(200).json(user)
