@@ -26,6 +26,7 @@ import LabAddComponent from "./components/LabAddComponent";
 import LabEditComponent from "./components/LabEditComponent";
 import TestResultEditComponent from "./components/TestResultEditComponent"; 
 import TestResultAddComponent from "./components/TestResultAddComponent";
+import OrganizationEditComponent from "./components/OrganizationEditComponent";
 
 const MyRoute=()=>{
     return(
@@ -44,8 +45,11 @@ const MyRoute=()=>{
 
                 <Route path="/news" exact component={NewsComponent}/>
                 <Route path="/addnews/:_id" exact component={NewsAddComponent} />
+
                 <Route path="/organization" exact component={OrganizationComponent} />
                 <Route path="/organization1" exact component={OrganizationComponent1} />
+                <Route path="/editorganization1/:_id" exact component={OrganizationEditComponent} />
+
                 <Route path="/checkstatusfornisit" exact component={CheckStatusForNisitComponent} />
                 <Route path="/checkstatusforsuper" exact component={CheckStatusForSuperComponent} />
                 <Route path="/documents" exact component={DocumentComponent} />

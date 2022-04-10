@@ -210,7 +210,7 @@ function App() {
               ข้อมูลเจ้าหน้าที่
             </h1>
 
-            {getRole()=='Professor' &&(
+            {getRole()=='admin' &&(
                     <div>
                       <Link to="/news">
                         <button
@@ -298,7 +298,7 @@ function App() {
                                 <div className="">
 
                                 
-                                {getRole()=='Professor' &&(
+                                {getRole()=='admin' &&(
                                         <div>
                                           <Link to={`/addnews/${officers._id}`}>
                                             
@@ -400,7 +400,7 @@ function App() {
                                 
                                 <div className="">
                                   
-                                {getRole()=='Professor' &&(
+                                {getRole()=='admin' &&(
                                         <div>
                                           <Link to={`/addnews/${officers._id}`}>
                                             

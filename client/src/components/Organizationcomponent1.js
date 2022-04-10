@@ -175,7 +175,7 @@ const OrganizationComponent1 = () => {
             </h1>
             
 
-            {getRole()=='Professor' &&(
+            {getRole()=='admin' &&(
                       <div>
                         <Link to="/organization">
                           <button
@@ -263,7 +263,7 @@ const OrganizationComponent1 = () => {
                                 
                                 <div className="">
 
-                                {getRole()=='Professor' &&(
+                                {getRole()=='admin' &&(
                                         <div>
                                           <EditOutlined
                                             onClick={() => {
@@ -349,18 +349,22 @@ const OrganizationComponent1 = () => {
                                 
                                 <div className="">
 
-                                {getRole()=='Professor' &&(
+                                {getRole()=='admin' &&(
                                         <div>
-                                          <EditOutlined
-                                            onClick={() => {
-                                              // deleteItem(announce._id);
-                                            }}
-                                            style={{
-                                              marginRight: "1rem",
-                                              color: "#39AEA9",
-                                              fontSize: "1.5rem",
-                                            }}
-                                          />
+                                          <Link to={`/editorganization1/${patients._id}`}>
+                                            
+                                            <EditOutlined
+                                              onClick={() => {
+                                                // deleteItem(officers._id);
+                                              }}
+                                              style={{
+                                                marginRight: "1rem",
+                                                color: "#39AEA9",
+                                                fontSize: "1.5rem",
+                                              }}
+                                            />
+        
+                                          </Link>
                                           <DeleteFilled
                                             onClick={() => {
                                               deleteItem(patients._id);

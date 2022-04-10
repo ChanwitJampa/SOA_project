@@ -1,7 +1,7 @@
 import NavbarComponent from "./NavbarComponent";
 import { useEffect, useState } from "react";
 import ReactTooltip from "react-tooltip";
-
+import { getToken} from "../servies/authorize";
 import "./DocumentComponent.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -48,6 +48,8 @@ const DocumentComponent = () => {
 `;
 
   const fetchData = () => {
+
+    
     
     axios
       .get(
@@ -65,8 +67,40 @@ const DocumentComponent = () => {
           )
         );
       })
+
       .catch((err) => alert(err));
+
+
+
+      const token = getToken();
+
+
+      console.log("TOKEN = " + token)
+
+    // axios
+    //   .get(
+    //     `https://covid19.ddc.moph.go.th/api/Cases/timeline-cases-by-provinces`,
+    //     {headers: {Authorization: `Bearer ${token}`}}
+    //   )
+    //   .then((response) => {
+    //     console.log("PNAME")
+    //     console.log(response.data);
+    //     // setHospital(response.data);
+
+    //     setHospital(
+    //       response.data.slice(
+    //         response.data.length - 78,
+    //         response.data.length - 1
+    //       )
+    //     );
+    //   })
+
+
   };
+
+  
+
+
 
   // const pullHistory = (pName) => {
   //   if (pName != "กรุณาเลือกจังหวัด") {
@@ -90,6 +124,7 @@ const DocumentComponent = () => {
 
     fetchData();
     console.log(pName);
+    // console.log(getToken())
 
     console.log("Hello");
     

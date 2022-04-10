@@ -95,4 +95,5 @@ const LoginComponent=(props)=>{
         </div>
     )
 }
+
 export default LoginComponent;
