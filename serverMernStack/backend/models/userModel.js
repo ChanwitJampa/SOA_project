@@ -31,6 +31,10 @@ var userSchema = mongoose.Schema({
         select: false,
         required:[true,'Please add a password']
     },
+    role:{
+        type: String,
+        required:[true,'Please add a role']
+    },
     token:{
         type:String
     },
