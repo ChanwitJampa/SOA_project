@@ -18,9 +18,9 @@ var userSchema = mongoose.Schema({
         type: String,
         required:[true,'Please add a idCard']
     },
-    userName:{
+    studentID:{
         type: String,
-        required:[true,'Please add a userName']
+        required:[true,'Please add a studentID']
     },
     email:{
         type: String,
