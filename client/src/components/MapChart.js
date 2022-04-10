@@ -73,7 +73,7 @@ const MapChart = ({ setTooltipContent, props }) => {
 
                   style={{
                     default: {
-                      fill: "#000",
+                      fill: "#02BC77",
                       // fill: "#D6D6DA",
                       outline: "none"
                     },

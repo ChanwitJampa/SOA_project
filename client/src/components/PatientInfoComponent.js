@@ -207,7 +207,7 @@ const PatientInfoComponent = (props) => {
                         </div>
                     </div>
                 </div>
-                <div style={{margin:"5rem",}}></div>
+                <div style={{marginTop:"5rem",}}></div>
                 
 
                 <h3 style={{marginLeft:"30rem"}}>ผลตรวจทั้งหมด</h3>
@@ -221,8 +221,8 @@ const PatientInfoComponent = (props) => {
               return (
 
                 <div className="contentBoxS">
-                    <h1 style={{marginLeft:"30rem"}} className="textStatus2">ผลตรวจที่ {i} : {filteredResults.result}</h1>
-                    <h1 style={{marginLeft:"30rem"}} className="textStatus2">รายละเอียดที่ {i} : {filteredResults.detail}</h1>
+                    <h1 style={{margin:"3rem"}} className="textStatus2">ผลตรวจที่ {i} : {filteredResults.result}</h1>
+                    <h1 style={{margin:"3rem"}} className="textStatus2">รายละเอียดที่ {i} : {filteredResults.detail}</h1>
                     {/* <h1 className="textStatus2">test</h1>
                     <h1 className="textStatus2">test</h1>
                     <h1 className="textStatus2">test</h1>

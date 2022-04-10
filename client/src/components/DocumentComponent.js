@@ -3,10 +3,12 @@ import { useEffect, useState } from "react";
 import ReactTooltip from "react-tooltip";
 import { getToken} from "../servies/authorize";
 import "./DocumentComponent.css";
+import { getRole, getUser,logout,getStudentID,getLastName,getFirstName } from "../servies/authorize";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowRightLong,
   faFileLines,
+  faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { Link, withRouter } from "react-router-dom";
@@ -40,9 +42,16 @@ const DocumentComponent = () => {
   const [pName, setpName] = useState("กรุณาเลือกจังหวัด");
 
   const [thospital, setThospital] = useState([]);
+  const [hospitalName, setHospitalName] = useState("กรุณาเลือกสถานพยาบาล");
+
+  const [PatientHospital, setPatientHospital] = useState([]);
+  const [patient, setPatient] = useState([]);
+
+  const [patientCount, setpatientCount] = useState(0);
 
   let [loading, setLoading] = useState(false);
   let [color, setColor] = useState("#ffffff");
+
   const override = `
   display: block;
   margin: 0 auto;
@@ -59,7 +68,7 @@ const DocumentComponent = () => {
       )
       .then((response) => {
         console.log("PNAME")
-        console.log(response.data);
+        // console.log(response.data);
         // setHospital(response.data);
 
         setHospital(
@@ -69,8 +78,30 @@ const DocumentComponent = () => {
           )
         );
       })
-
       .catch((err) => alert(err));
+
+        axios
+        .get(
+          `https://soa-project-final.herokuapp.com/api/patients/`
+        )
+        .then((response) => {
+          console.log("setPatient")
+          console.log(response.data.body);
+          // setHospital(response.data);
+    
+          setPatient(response.data.body);
+          
+          /*setHospital(
+            response.data.slice(
+              response.data.length - 78,
+              response.data.length - 1
+            )
+          );*/
+          console.log(thospital);
+        })
+        .catch((err) => alert(err));
+
+    
 
 
 
@@ -110,7 +141,7 @@ const DocumentComponent = () => {
       console.log(response.data);
       // setHospital(response.data);
 
-      setThospital(response.data);
+      setThospital(response.data.result);
       
       /*setHospital(
         response.data.slice(
@@ -118,9 +149,91 @@ const DocumentComponent = () => {
           response.data.length - 1
         )
       );*/
-      console.log({thospital});
+      console.log(thospital);
     })
 
+  }
+
+  const countPatient = () => {
+    let count = 0;
+
+    console.log("countPatient");
+    setpatientCount(0);
+
+
+    for (let i = 0; i < PatientHospital.length; i++) {
+      
+      if(PatientHospital[i].hospitalID == hospitalName)
+      {
+
+        count++;
+        console.log(count);
+
+      }
+
+    }
+
+    setpatientCount(count);
+  }
+
+
+  const fecthPatientHospital = () => {
+    axios
+    .get(
+      `http://localhost:5000/api/PatientsInHospitals`
+    )
+    .then((response) => {
+      console.log("kokokokokookkokkoko")
+      console.log(response.data);
+      // setHospital(response.data);
+
+      setPatientHospital(response.data);
+      
+      
+
+      console.log("PatientHospital");
+      console.log(PatientHospital);
+    })
+
+  }
+
+  const getName = (id) => {
+    let name = "";
+
+      for (let i = 0; i < patient.length; i++) {
+
+        if(patient[i]._id == id)
+        {
+          return patient[i].firstName
+          
+        }
+
+
+      }
+
+
+
+
+      return id
+  }
+  const getLastName = (id) => {
+    let name = "";
+
+      for (let i = 0; i < patient.length; i++) {
+
+        if(patient[i]._id == id)
+        {
+          return patient[i].lastName
+          
+        }
+
+
+      }
+
+
+
+
+      return id
   }
 
 
@@ -152,9 +265,21 @@ const DocumentComponent = () => {
     console.log("Hello");
     plaiFetchData();
 
+    fecthPatientHospital();
+
     
     
   }, []);
+
+  useEffect(() => {
+
+    // fecthPatientHospital();
+    console.log(PatientHospital);
+    countPatient();
+    
+    
+  }, [hospitalName]);
+
 
   useEffect(() => {
     // setHospital(hospital.filter(hospital.province == pName))
@@ -162,20 +287,41 @@ const DocumentComponent = () => {
     // console.log(history[0])
     console.log(pName);
 
+
+    
+
     if (pName != "กรุณาเลือกจังหวัด") {
       // setHistory([]);
       // console.log("HISTORY");
       // console.log(history);
       // console.log("end");
       setLoading(true);
-      console.log("load");
+      // console.log("load");
 
       setTimeout(() => {
         setLoading(false);
-        console.log("load2");
+        // console.log("load2");
       }, 2000);
     }
   }, [pName]);
+
+
+  const inputHospitalName = (id) => {
+    console.log(id);
+
+    // const Name = allhospital.filter((hospital) => {
+    //     if (hospital._id === id) {
+    //         return hospital
+    //     }
+    // }).map((hospital) => {
+    //     return hospital.hospitalName
+    // })
+    // setHospitalName(Name.toString());
+
+    setHospitalName(id);
+    // console.log(lab);
+
+}
 
   return (
     <div>
@@ -298,18 +444,17 @@ const DocumentComponent = () => {
                     }}
                   />
                   <h1 className="historyHeader3">สถิติ</h1>
-                  {/* <h1 style={{fontSize:"1rem",color:"#FFF",marginBottom:"2rem"}}>ประวัติย้อนหลัง</h1> */}
 
-                  {/* <Radio.Group
-              onChange={onChange}
-              defaultValue="1"
-              buttonStyle="solid"
-              style={{ marginBottom: 100, BackgroundColor: "#fff1f0" }}
-            >
-              <Radio.Button value="1">วันนี้</Radio.Button>
-              <Radio.Button value="7">7 วัน</Radio.Button>
-              <Radio.Button value="30">30 วัน</Radio.Button>
-            </Radio.Group> */}
+                  {/* <Link
+                      to={`/patientinfo/623898418f52638018d08103`}
+                      type="button"
+                      class="btn btn-primary"
+                      // style={{marginTop:"2rem"}}
+                    >
+                      <FontAwesomeIcon icon={faHospital} />
+                    </Link> */}
+                  
+                  
 
                   <BarLoader
                     className="loadingbar"
@@ -318,6 +463,80 @@ const DocumentComponent = () => {
                     css={override}
                     size={150}
                   />
+
+                  <div style={{width:"30rem",marginLeft:"14rem",marginTop:"3rem"}}>
+                                    
+                    <select onChange={(event) => inputHospitalName(event.target.value)} placeholder="กรุณาเลือกจังหวัด" class="form-control" id="exampleFormControlSelect1">
+                        {
+                          thospital.filter((thospital) => thospital.hospitalLocation.includes(pName)).map((hospitalName => {
+                            return (
+                              <option value={hospitalName.hospitalId}>{hospitalName.hospitalName}</option>
+                                )
+                              }))
+                            }
+
+                    </select>
+
+                    <h1 style={{fontSize:"1rem",marginTop:"2rem",marginBottom:"2rem",color:"white"}}>hostpitalID :{hospitalName}</h1>
+
+                    <h1 style={{fontSize:"1rem",marginTop:"2rem",marginBottom:"3rem",color:"white"}}>จำนวนคนป่วย :{patientCount}</h1>
+
+                    {getRole()=='admin' &&(
+                  <table
+                    class="table"
+                    className="tableprovince"
+                    style={{
+                      backgroundColor: "#FFFFFF",
+                      paddingRight: "40rem",
+                      paddingLeft: "40rem",
+                    }}
+                  >
+                    <thead className="table-thead">
+                      <tr>
+                        {/* <th scope="col">ชื่อจังหวัด</th> */}
+                        {/* <th scope="col">patientID</th> */}
+                        <th scope="col">ชื่อจริง</th>
+                        <th scope="col">นามสกุล</th>
+                        {/* <th scope="col">วันที่อัพเดต</th> */}
+                        <th scope="col">ปุ่ม</th>
+                      </tr>
+                    </thead>
+                    <tbody className="table-tbody">
+                      {PatientHospital
+                        .filter((PatientHospital) => PatientHospital.hospitalID == hospitalName)
+                        .map((hospital) => (
+                          // {hospital.filter(hospital.province === "จันทบุรี").map((hospital) => (
+
+                          <tr>
+                            <td style={{ color: "#019267", fontWeight: "bold" }}>
+                              {getName(hospital.patientID)}
+                            </td>
+                            {/* <td>
+                              {hospital.patientID}
+                            </td> */}
+                            <td style={{ color: "red", fontWeight: "bold" }}>
+                              {getLastName(hospital.patientID)}
+                            </td>
+                            <td>
+                              <Link
+                                to={`/patientinfo/${hospital.patientID}`}
+                                type="button"
+                                class="btn btn-primary"
+                                // style={{marginTop:"2rem"}}
+                              >
+                                <FontAwesomeIcon icon={faUser} />
+                              </Link>
+                            </td>
+                          </tr>
+                        ))}
+                    </tbody>
+                  </table>
+
+                    )}
+
+
+
+                  </div>
                 </div>
 
                 {/* <div className="space1"></div> */}

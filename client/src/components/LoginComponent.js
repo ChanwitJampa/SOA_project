@@ -77,7 +77,7 @@ const LoginComponent=(props)=>{
                                 </p> */}
                                 
                                 <button type="submit" className="btn btn-success" >Sign in</button>
-                                <Link to="/" ><button to="" type="submit" className="btn btn-success" style={{backgroundColor:"#005334"}}>Login as Guest</button></Link>
+                                <Link to="/documents" ><button to="" type="submit" className="btn btn-success" style={{backgroundColor:"#005334"}}>Login as Guest</button></Link>
                                 {/* <Link to="" type="submit" className="btn btn-success" style={{backgroundColor:"#005334",marginTop:"3rem"}}>go to app</Link> */}
                                 
                             </form>
