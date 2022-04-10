@@ -1,0 +1,13 @@
+.testresultBox{
+    margin-top: 5rem;
+    border-radius: 1rem;
+    border-color: black;
+    border-width: 1rem;
+    display: flex;
+    flex-direction: row;
+    border-radius: 0.5rem;
+    border-width: 0.1rem;
+    border-style: solid;
+    border-color: black;
+    background-color: #ffffff;
+}

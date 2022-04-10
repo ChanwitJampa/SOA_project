@@ -27,6 +27,7 @@ import LabEditComponent from "./components/LabEditComponent";
 import TestResultEditComponent from "./components/TestResultEditComponent"; 
 import TestResultAddComponent from "./components/TestResultAddComponent";
 import OrganizationEditComponent from "./components/OrganizationEditComponent";
+import PatientInfoComponent from "./components/PatientInfoComponent";
 
 const MyRoute=()=>{
     return(
@@ -67,6 +68,11 @@ const MyRoute=()=>{
                 <Route path="/addresult" exact component={TestResultAddComponent} />
                 <Route path="/editresult/:_id" exact component={TestResultEditComponent} />
                 
+
+                {/* <Route path="/patientinfo/:_id" exact component={PatientInfoComponent} /> */}
+                <Route path="/patientinfo/:_id" exact component={PatientInfoComponent} />
+
+
             </Switch>
         </BrowserRouter>
     );
