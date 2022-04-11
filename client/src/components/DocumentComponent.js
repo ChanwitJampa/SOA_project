@@ -393,7 +393,7 @@ const DocumentComponent = () => {
                       <th scope="col">เสียชีวิตวันนี้</th>
                       <th scope="col">ยอดตายสะสม</th>
                       {/* <th scope="col">วันที่อัพเดต</th> */}
-                      <th scope="col">ปุ่ม</th>
+                      {/* <th scope="col">ปุ่ม</th> */}
                     </tr>
                   </thead>
                   <tbody className="table-tbody">
@@ -420,7 +420,7 @@ const DocumentComponent = () => {
                           </td>
                           <td>{hospital.total_death}</td>
                           {/* <td>{hospital.update_date}</td> */}
-                          <td>
+                          {/* <td>
                             <Link
                               to={`/announce`}
                               type="button"
@@ -429,7 +429,7 @@ const DocumentComponent = () => {
                             >
                               <FontAwesomeIcon icon={faHospital} />
                             </Link>
-                          </td>
+                          </td> */}
                         </tr>
                       ))}
                   </tbody>
