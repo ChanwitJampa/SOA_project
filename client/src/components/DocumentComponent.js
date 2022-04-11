@@ -393,7 +393,7 @@ const DocumentComponent = () => {
                       <th scope="col">เสียชีวิตวันนี้</th>
                       <th scope="col">ยอดตายสะสม</th>
                       {/* <th scope="col">วันที่อัพเดต</th> */}
-                      <th scope="col">ปุ่ม</th>
+                      {/* <th scope="col">ปุ่ม</th> */}
                     </tr>
                   </thead>
                   <tbody className="table-tbody">
@@ -420,7 +420,7 @@ const DocumentComponent = () => {
                           </td>
                           <td>{hospital.total_death}</td>
                           {/* <td>{hospital.update_date}</td> */}
-                          <td>
+                          {/* <td>
                             <Link
                               to={`/announce`}
                               type="button"
@@ -429,7 +429,7 @@ const DocumentComponent = () => {
                             >
                               <FontAwesomeIcon icon={faHospital} />
                             </Link>
-                          </td>
+                          </td> */}
                         </tr>
                       ))}
                   </tbody>
@@ -466,6 +466,9 @@ const DocumentComponent = () => {
                   />
 
                   <div style={{width:"30rem",marginLeft:"14rem",marginTop:"3rem"}}>
+
+                  
+                  {getRole()=='admin' &&(
                                     
                     <select onChange={(event) => inputHospitalName(event.target.value)} placeholder="กรุณาเลือกจังหวัด" class="form-control" id="exampleFormControlSelect1">
                         {
@@ -477,6 +480,7 @@ const DocumentComponent = () => {
                             }
 
                     </select>
+                  )}
 
                     <h1 style={{fontSize:"1rem",marginTop:"2rem",marginBottom:"2rem",color:"white"}}>hostpitalID :{hospitalName}</h1>
 
