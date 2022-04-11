@@ -55,7 +55,7 @@ const LoginComponent=(props)=>{
                 <div>
                     <div className="logoImg">
                         <img src={kuLogo2} alt="KULogo" width="250" height="250" />
-                        <h3 className="loginText2">ระบบจัดการการฝึกงาน</h3>
+
                         <h3 className="loginText">Login</h3>
                     </div>
                     
@@ -63,8 +63,8 @@ const LoginComponent=(props)=>{
                         <div className="innerLogin">
                             <form onSubmit={signinForm}>
                                 <div className="form-group">
-                                    <label>Nontri Account</label>
-                                    <input type="text" className="form-control" placeholder="bxxxxxxxxxx" onChange={inputValue("studentID")}/>
+                                    <label>username</label>
+                                    <input type="text" className="form-control" placeholder="Enter username" onChange={inputValue("studentID")}/>
                                 </div>
 
                                 <div className="form-group">

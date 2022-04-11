@@ -25,7 +25,7 @@ app.use(express.urlencoded({ extended: false }))
 
 
 
-app.use('/api/users', require('./backend/routes/userRouters'))
+// app.use('/api/users', require('./backend/routes/userRouters'))
 app.use('/api/login', require('./backend/routes/loginRouters'))
 app.use('/api/PatientsInHospitals',auth, require('./backend/routes/patientsInHospitalRouters'))
 app.use('/api/hospitals', require('./backend/routes/hospitalsRouters'))
