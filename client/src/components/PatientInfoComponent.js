@@ -183,12 +183,12 @@ const PatientInfoComponent = (props) => {
                 <div>
                     <h1
                         style={{
-                            fontSize: "2rem",
+                            fontSize: "3rem",
                             fontWeight: "bold",
                             marginTop: "5rem",
                             marginLeft: "-5rem",
                             marginBottom: "5rem",
-                            color: "crimson",
+                            color: "black",
                         }}
                     >
                         ตรวจสอบข้อมูลคนไข้
@@ -199,10 +199,10 @@ const PatientInfoComponent = (props) => {
 
                             <br /> */}
                             <br/>
-                            <h1 className="btextStatus2">ชื่อจริง</h1>
-                            <h1 className="btextStatus2">นามสกุล</h1>
-                            <h1 className="btextStatus2">วันเกิด</h1>
-                            <h1 className="btextStatus2">เลขบัตรประชาชน</h1>
+                            <h1 className="btextStatus2" style={{color:"crimson",fontWeight:"bold"}}>ชื่อจริง</h1>
+                            <h1 className="btextStatus2" style={{color:"crimson",fontWeight:"bold"}}>นามสกุล</h1>
+                            <h1 className="btextStatus2" style={{color:"crimson",fontWeight:"bold"}}>วันเกิด</h1>
+                            <h1 className="btextStatus2" style={{color:"crimson",fontWeight:"bold"}}>เลขบัตรประชาชน</h1>
                             
                             {/* <h1 className="btextStatus2">มีที่พักหรือไม่ </h1>
                             <h1 className="btextStatus2">ชื่อของผู้ที่ยื่นคำร้องถึง </h1>
@@ -246,8 +246,12 @@ const PatientInfoComponent = (props) => {
               return (
 
                 <div className="contentBoxS" style={{marginTop:"1rem",fontWeight:"bold"}}>
-                    <h1 style={{margin:"3rem"}} className="textStatus2">ผลตรวจที่ {i} : {filteredResults.result}</h1>
-                    <h1 style={{margin:"3rem"}} className="textStatus2">รายละเอียดที่ {i} : {filteredResults.detail}</h1>
+
+                    
+
+                    <h1 style={{margin:"1rem",color:"crimson",fontWeight:"bold"}} className="textStatus2">ผลตรวจที่ {i} <h1 style={{margin:"1rem",color:"black"}} className="textStatus2">{filteredResults.result}</h1></h1>
+                    <h1 style={{margin:"1rem",color:"crimson",fontWeight:"bold"}} className="textStatus2">รายละเอียดที่ {i} <h1 style={{margin:"1rem",color:"black"}} className="textStatus2">{filteredResults.detail}</h1></h1>
+                    
                     {/* <h1 className="textStatus2">test</h1>
                     <h1 className="textStatus2">test</h1>
                     <h1 className="textStatus2">test</h1>
@@ -273,8 +277,13 @@ const PatientInfoComponent = (props) => {
               return (
 
                 <div className="contentBoxS" style={{marginTop:"1rem",}}>
-                    <h1 style={{margin:"3rem"}} className="textStatus2">ยา ID {i} : {filteredResults.medicineID}</h1>
-                    <h1 style={{margin:"3rem"}} className="textStatus2">ปริมาณ {i} : {filteredResults.amountInMilligrams}</h1>
+
+
+                    <h1 style={{margin:"1rem",color:"crimson",fontWeight:"bold"}} className="textStatus2">ID ตัวยา ครั้งที่ {i} <h1 style={{margin:"1rem",color:"black"}} className="textStatus2">{filteredResults.medicineID}</h1></h1>
+                    <h1 style={{margin:"1rem",color:"crimson",fontWeight:"bold"}} className="textStatus2">ปริมาณที่จ่ายยา ครั้งที่ {i} <h1 style={{margin:"1rem",color:"black"}} className="textStatus2">{filteredResults.amountInMilligrams}</h1></h1>
+                   
+                    {/* <h1 style={{margin:"1rem"}} className="textStatus2">ID ตัวยา {i} | {filteredResults.medicineID}</h1>
+                    <h1 style={{margin:"1rem"}} className="textStatus2">ปริมาณที่จ่ายยา {i} | {filteredResults.amountInMilligrams}</h1> */}
                     
                     
                 

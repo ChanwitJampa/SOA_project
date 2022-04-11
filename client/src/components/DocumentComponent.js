@@ -465,6 +465,9 @@ const DocumentComponent = () => {
                   />
 
                   <div style={{width:"30rem",marginLeft:"14rem",marginTop:"3rem"}}>
+
+                  
+                  {getRole()=='admin' &&(
                                     
                     <select onChange={(event) => inputHospitalName(event.target.value)} placeholder="กรุณาเลือกจังหวัด" class="form-control" id="exampleFormControlSelect1">
                         {
@@ -476,6 +479,7 @@ const DocumentComponent = () => {
                             }
 
                     </select>
+                  )}
 
                     <h1 style={{fontSize:"1rem",marginTop:"2rem",marginBottom:"2rem",color:"white"}}>hostpitalID :{hospitalName}</h1>
 
