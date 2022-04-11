@@ -467,10 +467,15 @@ const DocumentComponent = () => {
 
                   <div style={{width:"30rem",marginLeft:"14rem",marginTop:"3rem"}}>
 
-                  
-                  {getRole()=='admin' &&(
+                  {pName!="กรุณาเลือกจังหวัด" &&(
+                  //   <div>
+                  //     <h1>l;fkdlk;dfglkdf;gl;kfdgl;fkgdf;dlgk</h1>
+                  //   </div>
+                  // )}
+                  // {getRole()=='admin' &&(
                                     
-                    <select onChange={(event) => inputHospitalName(event.target.value)} placeholder="กรุณาเลือกจังหวัด" class="form-control" id="exampleFormControlSelect1">
+                    <select onChange={(event) => inputHospitalName(event.target.value)} placeholder="กรุณาเลือกจังหวัด" class="form-control" id="exampleFormControlSelect1" aria-label="Default select example">
+                      <option selected>กรุณาเลือกจังหวัด</option>
                         {
                           thospital.filter((thospital) => thospital.hospitalLocation.includes(pName)).map((hospitalName => {
                             return (

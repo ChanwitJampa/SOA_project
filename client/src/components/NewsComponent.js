@@ -187,7 +187,7 @@ const NewsComponent=()=>{
                         </div>
                         <div className="formnews">
                         <label>วันเกิด</label>
-                        <input position="text" id="disabledInput" className="form-control" placeholder="dd/mm/yy" onChange={inputValue("BOD")}/>
+                        <input position="text"  id="disabledInput" className="form-control" placeholder="dd/mm/yy" onChange={inputValue("BOD")}/>
                         </div>
                         <div className="formnews">
                         <label>กรอกเลขบัตรประชาชน</label>

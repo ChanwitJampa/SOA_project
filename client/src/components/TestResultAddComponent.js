@@ -283,11 +283,11 @@ const TestResultAddComponent=()=>{
                         </div>
                         <div className="formnews">
                         <label>result</label>
-                        <input position="text" id="disabledInput" className="form-control" placeholder="ประเภทห้อง" onChange={inputValue("result")}/>
+                        <input position="text" id="disabledInput" className="form-control" placeholder="ผล" onChange={inputValue("result")}/>
                         </div>
                         <div className="formnews">
                         <label>รายละเอียด</label>
-                        <input position="text" id="disabledInput" className="form-control" placeholder="ประเภทห้อง" onChange={inputValue("detail")}/>
+                        <input position="text" id="disabledInput" className="form-control" placeholder="รายละเอียด" onChange={inputValue("detail")}/>
                         </div>
                         {/* <div className="formnews">
                         <label>กรอกเลขบัตรประชาชน</label>
