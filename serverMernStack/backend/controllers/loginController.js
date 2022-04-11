@@ -32,6 +32,7 @@ const login = asyncHandler(async (req, res) => {
                 process.env.TOKEN_KEY, {
                 expiresIn: "24h"
             })
+            console.log("login : " + token)
             //save token in uuser
             const oldUser = await User.findOne({ studentID },'-createdAt -updatedAt')
             //if want to deselect _id await User.findOne({ studentID }, '-_id')

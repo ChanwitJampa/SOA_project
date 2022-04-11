@@ -5,7 +5,7 @@ const verifyToken = (req,res,next)=>{
     // console.log(req.headers.authorization)
 
    // const TokenArray = req.header.authorization.split(" ")[1]
-    
+    console.log
     const authHeader = JSON.stringify(req.headers.authorization)
    
     if(!authHeader){
@@ -23,7 +23,7 @@ const verifyToken = (req,res,next)=>{
 
     try{
         const decode= jwt.verify(token, config.TOKEN_KEY)
-        req.user=decode
+        // req.user=decode
     }catch(err){
         res.status(401)
         throw new Error('invalid token')
