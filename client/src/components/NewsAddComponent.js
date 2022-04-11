@@ -162,7 +162,7 @@ const NewsAddComponent=(props)=>{
                         </div>
                         <div className="formnews">
                         <label>วัน/เดือน/ปี เกิด</label>
-                        <input type="text" id="disabledInput" className="form-control" value={BOD} placeholder="0xx-xxxxxxx" onChange={inputValue("BOD")}/>
+                        <input type="text" id="disabledInput" className="form-control" value={BOD} placeholder="dd/mm/yy" onChange={inputValue("BOD")}/>
                         </div>
                         <div className="formnews">
                         <label>IDCard</label>
